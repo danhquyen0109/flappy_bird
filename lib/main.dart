@@ -64,6 +64,7 @@ class _FlipFlopState extends State<FlipFlop> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: DSColors.primary500),
       initialRoute: SplashScreen.routeName,
       onGenerateRoute:
