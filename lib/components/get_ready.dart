@@ -48,7 +48,7 @@ class GetReady extends Component {
       fontFamily: fontFamily,
       fontWeight: FontWeight.bold,
       fontSize: 32,
-      color: DSColors.lighteningYellow,
+      color: DSColors.primary500,
     );
     final textSpan1 = TextSpan(text: title, style: textStyle1);
     final textPainter1 = TextPainter(

@@ -32,33 +32,56 @@ class Leaderboard extends StatelessWidget {
         const SizedBox(height: 10),
         ...scoreList.asMap().entries.map(
           (entry) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CustomText(
-                    '${entry.key + 1}.',
-                    fontSize: 23,
-                    strokeWidth: 1.0,
+                  Expanded(
+                    flex: 1,
+                    child: CustomText(
+                      '${entry.key + 1}.',
+                      fontSize: 23,
+                      strokeWidth: 1.0,
+                    ),
                   ),
-                  const SizedBox(width: 16),
-                  CustomText(
-                    entry.value.split("@@@@")[1] == "0"
-                        ? "--"
-                        : '${entry.value.split("@@@@")[0]}:${entry.value.split("@@@@")[1]}',
-                    fontSize: 22,
-                    strokeWidth: .15,
-                    color: DSColors.woodSmoke,
-                    borderColor: DSColors.white,
-                  ),
-                  const SizedBox(width: 4),
-                  CustomText(
-                    'points',
-                    fontSize: 14,
-                    strokeWidth: .15,
-                    color: DSColors.woodSmoke,
-                    borderColor: DSColors.white,
+                  // const SizedBox(width: 16),
+                  Expanded(
+                    flex: 4,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        CustomText(
+                          entry.value.split("@@@@")[1] == "0"
+                              ? "--"
+                              : '${entry.value.split("@@@@")[0]}: ${entry.value.split("@@@@")[1]}',
+                          fontSize: 22,
+                          strokeWidth: .15,
+                          color:
+                              entry.value.split("@@@@")[1] != "0"
+                                  ? entry.key == 0
+                                      ? DSColors.primary500
+                                      : entry.key == 1
+                                      ? DSColors.primary300
+                                      : entry.key == 2
+                                      ? DSColors.lighteningYellow
+                                      : DSColors.woodSmoke
+                                  : DSColors.woodSmoke,
+                          borderColor: DSColors.white,
+                          fontFamily: '',
+                        ),
+                        // const SizedBox(width: 4),
+                        // CustomText(
+                        //   'points',
+                        //   fontSize: 14,
+                        //   strokeWidth: .15,
+                        //   color: DSColors.woodSmoke,
+                        //   borderColor: DSColors.white,
+                        //   fontFamily: '',
+
+                        // ),
+                      ],
+                    ),
                   ),
                 ],
               ),

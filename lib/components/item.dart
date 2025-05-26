@@ -53,7 +53,8 @@ abstract class Item extends Component {
 }
 
 extension ExtensionItem on Item {
-  bool get isSpell => this is Magnet || this is BottlePotion;
+  bool get isSpell =>
+      this is Magnet || this is BottlePotion || this is Shield || this is Ghost;
 
   bool get isFruit {
     if (this is Magnet) return false;

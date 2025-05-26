@@ -33,6 +33,19 @@ class Bird extends Component with GameSound {
 
   @override
   void draw(ui.Canvas canvas, ui.Size size) {
+    // Kiểm tra xem có Shield hoặc Ghost đang active không
+    bool hasActiveEffect = spells.any(
+      (spell) => (spell is Shield || spell is Ghost) && spell.iat > 0,
+    );
+
+    // Tạo hiệu ứng nhấp nháy bằng cách thay đổi opacity
+    double opacity =
+        hasActiveEffect
+            ? (DateTime.now().millisecondsSinceEpoch % 600) < 300
+                ? 0.5
+                : 1.0
+            : 1.0;
+
     double width = sprites[_fat].path[frame].width.toDouble();
     double height = sprites[_fat].path[frame].height.toDouble();
     canvas.save();
@@ -45,10 +58,12 @@ class Bird extends Component with GameSound {
     /// The argument is in radians clockwise.
     canvas.rotate(rotation * GameConstant.RAD);
 
+    // Vẽ bird với opacity thay đổi
+    final paint = ui.Paint()..color = ui.Color.fromRGBO(255, 255, 255, opacity);
     canvas.drawImage(
       sprites[_fat].path[frame],
       ui.Offset(-width / 2, -height / 2),
-      ui.Paint(),
+      paint,
     );
     if (dead) {
       double width0 = deadSprites[frame].width.toDouble();
@@ -176,15 +191,14 @@ class Bird extends Component with GameSound {
       gameManager.writeScore(RewardType.score);
       int score = gameManager.readScore();
       if (score > 0 && score % 10 == 0) {
-        playSound(path: 'good');
-      } else {
         playSound(path: 'score');
       }
       gameManager.setPipeStatus(false);
     }
 
     /// collide pipe
-    if (isCollisionRectRect(
+    final isCollidePipe =
+        isCollisionRectRect(
           p1Offset: Vector2(a: -bird.width / 2, b: -bird.height / 2),
           other: topCrate.move(
             Vector2.zero.copyWith(
@@ -204,9 +218,20 @@ class Bird extends Component with GameSound {
                   (topCrate.crateStatus.hasOffset ? topCrate.threshold : 0),
             ),
           ),
-        )) {
-      playSound(path: 'metal_hit');
-      return true;
+        );
+    if (spells.any((spell) => spell is Shield && spell.iat > 0)) {
+      if (isCollidePipe) {
+        return false;
+      }
+    } else if (spells.any((spell) => spell is Ghost && spell.iat > 0)) {
+      if (isCollidePipe) {
+        return false;
+      }
+    } else {
+      if (isCollidePipe) {
+        playSound(path: 'metal_hit');
+        return true;
+      }
     }
 
     /// collide item
@@ -295,6 +320,20 @@ class Bird extends Component with GameSound {
         Item bottle = spells.firstWhere((spell) => spell is BottlePotion);
         bottle.iat += item.iat;
       }
+    } else if (item is Ghost) {
+      if (!spells.any((e) => e is Ghost)) {
+        spells.add(item);
+      } else {
+        Item ghost = spells.firstWhere((spell) => spell is Ghost);
+        ghost.iat += item.iat;
+      }
+    } else if (item is Shield) {
+      if (!spells.any((e) => e is Shield)) {
+        spells.add(item);
+      } else {
+        Item shield = spells.firstWhere((spell) => spell is Shield);
+        shield.iat += item.iat;
+      }
     }
   }
 
@@ -303,7 +342,7 @@ class Bird extends Component with GameSound {
     for (var spell in spells) {
       if (spell is Magnet) {
         gameManager.getAvailableItems().forEach((item) {
-          if (item is Fruit &&
+          if (item is Gold &&
               isCollisionCircleRect(other: item, radius: spell.affectRadius) &&
               !item.isCollected) {
             /// add: !item.isCollected
@@ -321,7 +360,8 @@ class Bird extends Component with GameSound {
         });
       } else if (spell is BottlePotion) {
         spell.iat > 0 ? _fat = 1 : _fat = 0;
-      }
+      } else if (spell is Ghost) {
+      } else if (spell is Shield) {}
       spell.iat--;
     }
   }

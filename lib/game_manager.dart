@@ -7,15 +7,17 @@ enum GameState { firstTime, ready, play, pause, gameOver }
 enum RewardType { score, fruit, coin }
 
 enum ItemName {
-  durian,
-  kiwi,
-  orange,
-  papaya,
-  pineapple,
-  watermelon,
+  // durian,
+  // kiwi,
+  // orange,
+  // papaya,
+  // pineapple,
+  // watermelon,
   gold,
   magnet,
   bottle,
+  shield,
+  ghost,
 }
 
 abstract class GameManager {
@@ -102,7 +104,7 @@ abstract class GameManager {
     );
 
     ui.Image crate = await GameUtils.loadImage(
-      "assets/images/objects/crate3.png",
+      "assets/images/objects/crate1.png",
     );
     List<Component> components = [];
     // Background will be draw first
@@ -194,6 +196,20 @@ abstract class GameManager {
       30,
     );
     items.add(BottlePotion(sprite: Sprite(path: [bottle]), effect: []));
+    /// Shield item
+    ui.Image shield = await GameUtils.loadImageFitSize(
+      ItemName.shield.imagePath,
+      30,
+      30,
+    );
+    items.add(Shield(sprite: Sprite(path: [shield]), effect: []));
+    /// Ghost item
+    ui.Image ghost = await GameUtils.loadImageFitSize(
+      ItemName.ghost.imagePath,
+      30,
+      30,
+    );
+    items.add(Ghost(sprite: Sprite(path: [ghost]), effect: []));
     return items;
   }
 }
@@ -203,22 +219,26 @@ extension on ItemName {
     switch (this) {
       case ItemName.gold:
         return "";
-      case ItemName.durian:
-        return "assets/images/objects/fruitDurian.png";
-      case ItemName.kiwi:
-        return "assets/images/objects/fruitKiwi.png";
-      case ItemName.orange:
-        return "assets/images/objects/fruitOrange.png";
-      case ItemName.papaya:
-        return "assets/images/objects/fruitPapaya.png";
-      case ItemName.pineapple:
-        return "assets/images/objects/fruitPineapple.png";
-      case ItemName.watermelon:
-        return "assets/images/objects/fruitWatermelon.png";
+      // case ItemName.durian:
+      //   return "assets/images/objects/fruitDurian.png";
+      // case ItemName.kiwi:
+      //   return "assets/images/objects/fruitKiwi.png";
+      // case ItemName.orange:
+      //   return "assets/images/objects/fruitOrange.png";
+      // case ItemName.papaya:
+      //   return "assets/images/objects/fruitPapaya.png";
+      // case ItemName.pineapple:
+      //   return "assets/images/objects/fruitPineapple.png";
+      // case ItemName.watermelon:
+      //   return "assets/images/objects/fruitWatermelon.png";
       case ItemName.magnet:
         return "assets/images/objects/magnet.png";
       case ItemName.bottle:
         return "assets/images/bottle.png";
+      case ItemName.shield:
+        return "assets/images/shield.png";
+      case ItemName.ghost:
+        return "assets/images/ghost.png";
     }
   }
 }

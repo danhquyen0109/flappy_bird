@@ -50,9 +50,7 @@ class Board extends Component {
     if (frames % 180 == 0 && frames % 120 != 0) {
       int itemsPerFrame = Random().nextInt(5) + 1;
       int itemType =
-          itemsPerFrame == 1
-              ? Random().nextInt(2) + ItemName.magnet.index
-              : Random().nextInt(ItemName.watermelon.index + 1);
+          itemsPerFrame == 1 ? Random().nextInt(4) + ItemName.magnet.index : 0;
 
       if (itemsPerFrame == 1) {
         Item item = GameManager.gameItems[itemType].copyWith();

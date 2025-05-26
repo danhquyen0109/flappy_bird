@@ -38,7 +38,7 @@ class GameScorer extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   children: [
                     Positioned(
-                      top: height / 4,
+                      top: height / 3,
                       child: Column(
                         children: [
                           SizedBox(
@@ -46,59 +46,60 @@ class GameScorer extends StatelessWidget {
                             child: Image.asset(
                               'assets/images/go.png',
                               fit: BoxFit.fill,
+                              // color: DSColors.primary300,
                             ),
                           ),
                           const SizedBox(height: 4),
-                          Container(
-                            width: 200,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: DSColors.lighteningYellow,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8.0),
-                              ),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const SizedBox(width: 12),
-                                SizedBox(
-                                  width: 35,
-                                  child: Image.asset(
-                                    'assets/images/reward.png',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(width: 16),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CustomText(
-                                      'SCORE  ${state.score}',
-                                      fontSize: 22,
-                                      strokeWidth: 1.0,
-                                    ),
-                                    const SizedBox(height: 4),
-                                    CustomText(
-                                      'BEST   ${state.best}',
-                                      fontSize: 22,
-                                      strokeWidth: 1.0,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                          // Container(
+                          //   width: 200,
+                          //   height: 100,
+                          //   decoration: BoxDecoration(
+                          //     color: DSColors.primary300,
+                          //     borderRadius: BorderRadius.all(
+                          //       Radius.circular(8.0),
+                          //     ),
+                          //   ),
+                          //   child: Row(
+                          //     crossAxisAlignment: CrossAxisAlignment.center,
+                          //     mainAxisAlignment: MainAxisAlignment.start,
+                          //     children: [
+                          //       const SizedBox(width: 12),
+                          //       SizedBox(
+                          //         width: 35,
+                          //         child: Image.asset(
+                          //           'assets/images/reward.png',
+                          //           fit: BoxFit.cover,
+                          //         ),
+                          //       ),
+                          //       const SizedBox(width: 16),
+                          //       Column(
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         mainAxisAlignment: MainAxisAlignment.center,
+                          //         children: [
+                          //           CustomText(
+                          //             'SCORE  ${state.score}',
+                          //             fontSize: 22,
+                          //             strokeWidth: 1.0,
+                          //           ),
+                          //           const SizedBox(height: 4),
+                          //           CustomText(
+                          //             'BEST   ${state.best}',
+                          //             fontSize: 22,
+                          //             strokeWidth: 1.0,
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
                     Positioned(
-                      top: height / 4 + 143 + 108,
+                      top: height / 3 + 143 + 108,
                       child: PlainShadowButton(
                         borderColor: DSColors.woodSmoke,
-                        color: DSColors.lighteningYellow,
+                        color: DSColors.primary300,
                         bodyBuilder: (isTapped) {
                           return CustomText(
                             "SAVE SCORE",
@@ -165,10 +166,10 @@ class GameScorer extends StatelessWidget {
                       ),
                     ),
                     Positioned(
-                      top: height / 4 + 143 + 108 + 68,
+                      top: height / 3 + 143 + 108 + 68,
                       child: PlainShadowButton(
                         borderColor: DSColors.woodSmoke,
-                        color: DSColors.lighteningYellow,
+                        color: DSColors.primary300,
                         bodyBuilder: (isTapped) {
                           return CustomText(
                             "Try Again",
@@ -212,24 +213,23 @@ class GameScorer extends StatelessWidget {
               size: 30,
             ),
           ),
-          const SizedBox(width: 10),
+          Spacer(),
           _ScoreBuilder(),
-          const SizedBox(width: 20),
-          Image.asset(
-            'assets/images/objects/fruit.png',
-            fit: BoxFit.cover,
-            height: 30,
-          ),
-          const SizedBox(width: 8),
-          _FruitBuilder(),
-          const SizedBox(width: 20),
-          Image.asset(
-            'assets/images/objects/gold.png',
-            fit: BoxFit.cover,
-            height: 30,
-          ),
-          const SizedBox(width: 8),
-          _CoinBuilder(),
+          // Image.asset(
+          //   'assets/images/objects/fruit.png',
+          //   fit: BoxFit.cover,
+          //   height: 30,
+          // ),
+          // const SizedBox(width: 8),
+          // _FruitBuilder(),
+          // const SizedBox(width: 20),
+          // Image.asset(
+          //   'assets/images/objects/gold.png',
+          //   fit: BoxFit.cover,
+          //   height: 30,
+          // ),
+          // const SizedBox(width: 8),
+          // _CoinBuilder(),
           Spacer(),
           PauseButton(onPaused: onPaused),
           const SizedBox(width: 10),

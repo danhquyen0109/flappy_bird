@@ -17,3 +17,5 @@ export 'map_model.dart';
 export 'obstacle.dart';
 export 'pipe.dart';
 export 'vector2.dart';
+export 'shield.dart';
+export 'ghost.dart';
