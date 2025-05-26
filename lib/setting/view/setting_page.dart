@@ -5,6 +5,7 @@ import 'package:galaxy_bird/components/components.dart';
 import 'package:galaxy_bird/game_page.dart';
 import 'package:galaxy_bird/my_game/my_game.dart';
 import 'package:galaxy_bird/setting/setting.dart';
+import 'package:galaxy_bird/setting/view/how_to_play_page.dart';
 import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +38,13 @@ class SettingPage extends StatelessWidget {
               const SizedBox(height: 20),
               _ScoreButton(),
               const SizedBox(height: 20),
+              _HowToPlayButton(),
+              const SizedBox(height: 20),
               _PrivacyButton(),
-              if (Platform.isAndroid) ...[
-                const SizedBox(height: 20),
-                _ExitButton(),
-              ],
+              // if (Platform.isAndroid) ...[
+              //   const SizedBox(height: 20),
+              //   _ExitButton(),
+              // ],
               const SizedBox(height: 25),
             ],
           ),
@@ -105,6 +108,31 @@ class _PrivacyButton extends StatelessWidget {
                 bodyWidget: PrivacyWidget(),
               ),
         );
+      },
+      shadowColor: DSColors.woodSmoke,
+    );
+  }
+}
+
+class _HowToPlayButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PlainShadowButton(
+      borderColor: DSColors.woodSmoke,
+      color: DSColors.primaryColor,
+      bodyBuilder: (isTapped) {
+        return CustomText(
+          "HOW TO PLAY",
+          fontSize: isTapped ? 16 : 21,
+          fontWeight: FontWeight.w800,
+          strokeWidth: 1.0,
+        );
+      },
+      height: 65,
+      size: 200,
+      callback: () {
+        context.read<SettingCubit>().playButtonSound();
+        Navigator.of(context).pushNamed(HowToPlayPage.routeName);
       },
       shadowColor: DSColors.woodSmoke,
     );

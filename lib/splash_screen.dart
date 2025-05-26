@@ -121,7 +121,7 @@ class _ProgressAnimatedWidget extends AnimatedWidget {
 
   String get loadingText {
     if (animation.value <= 2.5 / 6) {
-      return "Welcome to Galaxy Bird Flying game";
+      return "Welcome to Galaxy Jump game";
     } else if (animation.value <= 3.5 / 6) {
       return "Overcome obstacles to get points";
     } else if (animation.value <= 5 / 6) {

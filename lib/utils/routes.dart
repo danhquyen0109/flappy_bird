@@ -1,5 +1,6 @@
 import 'package:galaxy_bird/game_page.dart';
 import 'package:galaxy_bird/setting/setting.dart';
+import 'package:galaxy_bird/setting/view/how_to_play_page.dart';
 import 'package:galaxy_bird/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,4 +16,5 @@ final gameRoutes = <String, CustomWidgetBuilder>{
   BirdShop.routeName: (_, components) => BirdShop(),
   MapShop.routeName: (_, components) => MapShop(),
   ShopPage.routeName: (_, components) => ShopPage(),
+  HowToPlayPage.routeName: (_, components) => HowToPlayPage(),
 };

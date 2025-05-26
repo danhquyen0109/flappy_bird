@@ -9,21 +9,22 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  image: ^4.5.4
-  equatable: ^2.0.7
-  flutter_bloc: ^9.1.1
-  url_launcher: ^6.3.1
-  shared_preferences: ^2.5.3
-  confetti: ^0.8.0
-  share_plus: ^11.0.0
-  flutter_svg: ^2.1.0
-  flame_audio: ^2.11.6
-  flame: ^1.29.0
+  image: 4.5.4
+  equatable: 2.0.7
+  flutter_bloc: 9.1.1
+  url_launcher: 6.3.1
+  shared_preferences: 2.5.3
+  confetti: 0.8.0
+  share_plus: 11.0.0
+  flutter_svg: 2.1.0
+  flame_audio: 2.11.6
+  flame: 1.29.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: 5.0.0
+  flutter_launcher_icons: 0.14.3
 flutter:
   uses-material-design: true
   assets:
@@ -79,3 +80,16 @@ flutter:
       fonts:
         - asset: assets/fonts/Chainwhacks.ttf
           weight: 700
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_background: "#ec5f7b"
+  adaptive_icon_foreground: "assets/images/logo.png"
+  adaptive_icon_maskable: true
+  android_enable_round_icon: true
+  android_adaptive_icon_background: "#ec5f7b"
+  android_adaptive_icon_foreground: "assets/images/logo.png"
+  min_sdk_android: 21 
+  remove_alpha_ios: true

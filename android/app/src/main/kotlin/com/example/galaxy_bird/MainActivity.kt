@@ -1,4 +1,4 @@
-package com.example.galaxy_bird
+package com.galaxy.jump
 
 import io.flutter.embedding.android.FlutterActivity
 
