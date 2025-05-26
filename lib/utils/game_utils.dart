@@ -38,26 +38,26 @@ class GameUtils {
     Duration? autoHide,
     Function(double width, double height)? bodyBuilder,
   }) {
-    late Timer _timer;
+    late Timer timer;
     showDialog(
       context: context,
       builder: (_) {
-        _timer = Timer(autoHide ?? const Duration(milliseconds: 2500),
+        timer = Timer(autoHide ?? const Duration(milliseconds: 2500),
             () => Navigator.of(context).pop());
         return SuccessDialog(
           showTitle: showTitle,
           title: title,
           bodyBuilder: bodyBuilder,
           onPressed: () {
-            if (_timer.isActive) {
-              _timer.cancel();
+            if (timer.isActive) {
+              timer.cancel();
             }
           },
         );
       },
     ).then((val) {
-      if (_timer.isActive) {
-        _timer.cancel();
+      if (timer.isActive) {
+        timer.cancel();
       }
     });
   }

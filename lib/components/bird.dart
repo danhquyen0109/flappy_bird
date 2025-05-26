@@ -8,8 +8,8 @@ class Bird extends Component with GameSound {
   Bird({
     required List<Sprite> spriteList,
     this.deadSprites = const [],
-    double x = 50,
-    double y = 100,
+    super.x = 50,
+    super.y = 100,
     int fat = 0,
     this.rotation = 0,
     this.frame = 0,
@@ -17,12 +17,9 @@ class Bird extends Component with GameSound {
     this.gravity = .125,
     this.thrust = 3.6,
     this.dead = false,
-  })  : sprites = spriteList,
-        _fat = fat,
-        super(
-            sprite: spriteList.isEmpty ? Sprite.empty : spriteList[fat],
-            x: x,
-            y: y);
+  }) : sprites = spriteList,
+       _fat = fat,
+       super(sprite: spriteList.isEmpty ? Sprite.empty : spriteList[fat]);
 
   int _fat;
   List<Sprite> sprites;
@@ -36,68 +33,74 @@ class Bird extends Component with GameSound {
 
   @override
   void draw(ui.Canvas canvas, ui.Size size) {
-    double width = this.sprites[_fat].path[this.frame].width.toDouble();
-    double height = this.sprites[_fat].path[this.frame].height.toDouble();
+    double width = sprites[_fat].path[frame].width.toDouble();
+    double height = sprites[_fat].path[frame].height.toDouble();
     canvas.save();
 
     /// Add a translation to the current transform,
     /// shifting the coordinate space horizontally by the first argument
     /// and vertically by the second argument.
-    canvas.translate(this.x, this.y);
+    canvas.translate(x, y);
 
     /// The argument is in radians clockwise.
-    canvas.rotate(this.rotation * GameConstant.RAD);
+    canvas.rotate(rotation * GameConstant.RAD);
 
-    canvas.drawImage(this.sprites[_fat].path[this.frame],
-        ui.Offset(-width / 2, -height / 2), ui.Paint());
+    canvas.drawImage(
+      sprites[_fat].path[frame],
+      ui.Offset(-width / 2, -height / 2),
+      ui.Paint(),
+    );
     if (dead) {
-      double _width = this.deadSprites[this.frame].width.toDouble();
-      double _height = this.deadSprites[this.frame].height.toDouble();
-      canvas.drawImage(this.deadSprites[this.frame],
-          ui.Offset(-_width / 2, -_height / 2), ui.Paint());
+      double width0 = deadSprites[frame].width.toDouble();
+      double height0 = deadSprites[frame].height.toDouble();
+      canvas.drawImage(
+        deadSprites[frame],
+        ui.Offset(-width0 / 2, -height0 / 2),
+        ui.Paint(),
+      );
     }
     canvas.restore();
   }
 
   @override
   void update(GameManager gameManager, int frames) {
-    double r = this.sprites[_fat].width.toDouble() / 2;
+    double r = sprites[_fat].width.toDouble() / 2;
     switch (gameManager.getGameState()) {
       case GameState.ready:
-        this.y = 100;
-        this.rotation = 0;
-        this.frame += (frames % 10 == 0) ? 1 : 0;
-        this.y += (frames % 10 == 0) ? sin(frames * GameConstant.RAD) : 0;
+        y = 100;
+        rotation = 0;
+        frame += (frames % 10 == 0) ? 1 : 0;
+        y += (frames % 10 == 0) ? sin(frames * GameConstant.RAD) : 0;
         break;
       case GameState.play:
         userSpells(gameManager);
-        this.frame += (frames % 5 == 0) ? 1 : 0;
+        frame += (frames % 5 == 0) ? 1 : 0;
         // bird will be free to fall (inc y)
-        this.y = this.y + speed;
+        y = y + speed;
 
-        this.setRotation();
-        this.speed = this.speed + gravity;
-        if (this.y + r >= gameManager.getGround().y ||
-            this.isCollision(gameManager, frames)) {
+        setRotation();
+        speed = speed + gravity;
+        if (y + r >= gameManager.getGround().y ||
+            isCollision(gameManager, frames)) {
           dead = true;
           gameManager.gameOver();
         }
         break;
       case GameState.gameOver:
         //this.frame = 1;
-        this.frame += (frames % 5 == 0) ? 1 : 0;
+        frame += (frames % 5 == 0) ? 1 : 0;
         // touch pipe and fall down
-        if (this.y + r < gameManager.getGround().y) {
+        if (y + r < gameManager.getGround().y) {
           if (!isFlyingInGap(gameManager)) {
-            this.y += this.speed;
-            this.setRotation();
+            y += speed;
+            setRotation();
           }
-          this.speed += this.gravity * 2;
+          speed += gravity * 2;
         } else {
           // touch ground
-          this.speed = 0;
-          this.y = gameManager.getGround().y - r;
-          this.rotation = 90;
+          speed = 0;
+          y = gameManager.getGround().y - r;
+          rotation = 90;
           if (!gameManager.isPlayed()) {
             playSound(path: 'die');
             gameManager.setPlayed(true);
@@ -107,41 +110,41 @@ class Bird extends Component with GameSound {
       default:
         break;
     }
-    this.frame = this.frame % this.sprites[_fat].length;
+    frame = frame % sprites[_fat].length;
   }
 
   void flap() {
-    if (this.y > 0) {
-      this.speed = -this.thrust;
+    if (y > 0) {
+      speed = -thrust;
       playSound(path: 'flap');
     }
   }
 
   void reset() {
-    this.speed = 0;
-    this.y = 100;
-    this.dead = false;
-    this._fat = 0;
-    this.rotation = 0;
-    this.frame = 0;
-    this.speed = 0;
-    this.gravity = .125;
-    this.thrust = 3.6;
-    this.spells.clear();
+    speed = 0;
+    y = 100;
+    dead = false;
+    _fat = 0;
+    rotation = 0;
+    frame = 0;
+    speed = 0;
+    gravity = .125;
+    thrust = 3.6;
+    spells.clear();
   }
 
   void setRotation() {
-    if (this.speed <= 0) {
+    if (speed <= 0) {
       // tap event happen
       // speed_range: [-3.6,0]
       // 0 <= (this.speed / (-this.thrust)) <= 1 ~ -25 - 0 degree
       // = -25 when speed = -3.6, 0 when speed = 0
-      this.rotation = max(-25, -25 * this.speed / (-this.thrust));
-    } else if (this.speed > 0) {
+      rotation = max(-25, -25 * speed / (-thrust));
+    } else if (speed > 0) {
       // fall
       // speed_range: (0,7.2]
       // 0 < this.speed / (this.thrust * 2) <= 1
-      this.rotation = min(90, 90 * this.speed / (this.thrust * 2));
+      rotation = min(90, 90 * speed / (thrust * 2));
     }
   }
 
@@ -154,7 +157,7 @@ class Bird extends Component with GameSound {
     //final topSprite = pipe.sprites[0];
     final topCrate = pipe.obstacles[0] as Crate;
 
-    final bird = this.sprites[_fat].path.first;
+    final bird = sprites[_fat].path.first;
 
     /// always compare with first pipe because first pipe will be
     /// removed when it is no longer on canvas
@@ -167,8 +170,8 @@ class Bird extends Component with GameSound {
     double floor = roof + pipe.gap;
 
     double topSpiteWidth = topCrate.width;
-    if (this.x + r >= xPipe &&
-        !(this.x + r < xPipe + topSpiteWidth) &&
+    if (x + r >= xPipe &&
+        !(x + r < xPipe + topSpiteWidth) &&
         gameManager.isPipeRemoved()) {
       gameManager.writeScore(RewardType.score);
       int score = gameManager.readScore();
@@ -181,19 +184,26 @@ class Bird extends Component with GameSound {
     }
 
     /// collide pipe
-    if (this.isCollisionRectRect(
+    if (isCollisionRectRect(
           p1Offset: Vector2(a: -bird.width / 2, b: -bird.height / 2),
-          other: topCrate.move(Vector2.zero.copyWith(
+          other: topCrate.move(
+            Vector2.zero.copyWith(
               a: 0,
-              b: topCrate.crateStatus.hasOffset ? topCrate.threshold : 0)),
+              b: topCrate.crateStatus.hasOffset ? topCrate.threshold : 0,
+            ),
+          ),
         ) ||
-        this.isCollisionRectRect(
+        isCollisionRectRect(
           p1Offset: Vector2(a: -bird.width / 2, b: -bird.height / 2),
-          other: topCrate.move(Vector2.zero.copyWith(
+          other: topCrate.move(
+            Vector2.zero.copyWith(
               a: 0,
-              b: topCrate.height +
+              b:
+                  topCrate.height +
                   pipe.gap -
-                  (topCrate.crateStatus.hasOffset ? topCrate.threshold : 0))),
+                  (topCrate.crateStatus.hasOffset ? topCrate.threshold : 0),
+            ),
+          ),
         )) {
       playSound(path: 'metal_hit');
       return true;
@@ -201,9 +211,10 @@ class Bird extends Component with GameSound {
 
     /// collide item
     if (topCrate.ark != null &&
-        this.isCollisionRectRect(
-            other: topCrate.ark!,
-            p1Offset: Vector2(a: -bird.width / 2, b: -bird.height / 2))) {
+        isCollisionRectRect(
+          other: topCrate.ark!,
+          p1Offset: Vector2(a: -bird.width / 2, b: -bird.height / 2),
+        )) {
       if (topCrate.ark is Gold) {
         if (!(topCrate.ark as Gold).isCollected) {
           (topCrate.ark as Gold).setCollect();
@@ -214,8 +225,8 @@ class Bird extends Component with GameSound {
       //topCrate.ark = null;
     }
 
-    items.forEach((item) {
-      if (this.isCollisionRectRect(
+    for (var item in items) {
+      if (isCollisionRectRect(
         other: item,
         p1Offset: Vector2(a: -bird.width / 2, b: -bird.height / 2),
       )) {
@@ -230,7 +241,7 @@ class Bird extends Component with GameSound {
         }
         if (item.isSpell) addSpell(item);
       }
-    });
+    }
 
     // if (this.x + r >= xPipe) {
     //   if (this.x + r < xPipe + topSpiteWidth) {
@@ -258,17 +269,14 @@ class Bird extends Component with GameSound {
     double yPipe = pipe.obstacles[0].y;
     double roof = yPipe + topSprite.height;
     double floor = roof + pipe.gap;
-    return this.x > xPipe &&
-        this.x < xPipe + topSprite.width &&
-        this.y > roof &&
-        this.y < floor;
+    return x > xPipe && x < xPipe + topSprite.width && y > roof && y < floor;
   }
 
   @override
-  double get height => this.sprites[_fat].height.toDouble();
+  double get height => sprites[_fat].height.toDouble();
 
   @override
-  double get width => this.sprites[_fat].width.toDouble();
+  double get width => sprites[_fat].width.toDouble();
 
   List<Item> spells = [];
 
@@ -292,20 +300,19 @@ class Bird extends Component with GameSound {
 
   void userSpells(GameManager gameManager) {
     spells.removeWhere((spell) => spell.isExpired);
-    spells.forEach((spell) {
+    for (var spell in spells) {
       if (spell is Magnet) {
         gameManager.getAvailableItems().forEach((item) {
           if (item is Fruit &&
-              this.isCollisionCircleRect(
-                  other: item, radius: spell.affectRadius) &&
+              isCollisionCircleRect(other: item, radius: spell.affectRadius) &&
               !item.isCollected) {
             /// add: !item.isCollected
-            if (item.x < this.x) {
+            if (item.x < x) {
               item.x += 4;
             } else {
               item.x -= 4;
             }
-            if (item.y < this.y) {
+            if (item.y < y) {
               item.y += 4;
             } else {
               item.y -= 4;
@@ -316,6 +323,6 @@ class Bird extends Component with GameSound {
         spell.iat > 0 ? _fat = 1 : _fat = 0;
       }
       spell.iat--;
-    });
+    }
   }
 }

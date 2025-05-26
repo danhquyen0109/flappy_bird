@@ -3,13 +3,12 @@ import 'dart:ui' as ui;
 import 'package:galaxy_bird/components/components.dart';
 import 'package:flutter/material.dart';
 
+// ignore: constant_identifier_names
 const RAD = pi / 180;
 
 class TestPainter extends CustomPainter {
-  TestPainter({
-    required this.sprite,
-    required ValueNotifier<int> valueNotifier,
-  }) : super(repaint: valueNotifier);
+  TestPainter({required this.sprite, required ValueNotifier<int> valueNotifier})
+    : super(repaint: valueNotifier);
 
   Sprite sprite;
   int frame = 0;
@@ -79,9 +78,10 @@ class TestPainter extends CustomPainter {
 
       double xBot = temp;
       double yBot = (tCrate.y + tCrate.height) + 200;
-      final bCrate = Crate(sprite: sprite, quantity: 7)
-        ..x = xBot + (d / 2) * i + (i > 0 ? dz : 0)
-        ..y = yBot - (d / 2) * i + (i > 0 ? dz : 0);
+      final bCrate =
+          Crate(sprite: sprite, quantity: 7)
+            ..x = xBot + (d / 2) * i + (i > 0 ? dz : 0)
+            ..y = yBot - (d / 2) * i + (i > 0 ? dz : 0);
       drawCrateBottom(canvas, size, bCrate);
     }
   }
@@ -89,20 +89,17 @@ class TestPainter extends CustomPainter {
   final rotation = 45 * RAD;
 
   void drawCrateTop(ui.Canvas canvas, ui.Size size, Crate crate) {
-    double _x = crate.x;
-    double _y = crate.y;
-    double _dy = cos(rotation) * crate.width;
+    double x = crate.x;
+    double y = crate.y;
+    double dy = cos(rotation) * crate.width;
     canvas.save();
-    canvas.translate(_x, _y - _dy);
+    canvas.translate(x, y - dy);
     canvas.rotate(rotation);
     paintImage(
       canvas: canvas,
       rect: Rect.fromPoints(
-        Offset(0, _y),
-        Offset(
-          0 + crate.width,
-          _y + crate.height,
-        ),
+        Offset(0, y),
+        Offset(0 + crate.width, y + crate.height),
       ),
       alignment: Alignment.topCenter,
       image: crate.sprite.path.first,
@@ -113,19 +110,16 @@ class TestPainter extends CustomPainter {
   }
 
   void drawCrateBottom(ui.Canvas canvas, ui.Size size, Crate crate) {
-    double _x = crate.x;
-    double _y = crate.y;
+    double x = crate.x;
+    double y = crate.y;
     canvas.save();
-    canvas.translate(_x, _y);
+    canvas.translate(x, y);
     canvas.rotate(-rotation);
     paintImage(
       canvas: canvas,
       rect: Rect.fromPoints(
         Offset(0, 0),
-        Offset(
-          0 + crate.width,
-          0 + crate.height,
-        ),
+        Offset(0 + crate.width, 0 + crate.height),
       ),
       alignment: Alignment.topCenter,
       image: crate.sprite.path.first,

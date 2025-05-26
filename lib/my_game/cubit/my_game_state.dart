@@ -41,7 +41,7 @@ class MyGameState extends Equatable {
   }
 
   int get best {
-    if (this.bestScore.isEmpty) return 0;
+    if (bestScore.isEmpty) return 0;
     int bestTemp = int.parse(bestScore[0].split("@@@@")[1]);
     for (final item in bestScore) {
       int best = int.parse(item.split("@@@@")[1]);

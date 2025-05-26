@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 
 class SuccessDialog extends StatefulWidget {
   const SuccessDialog({
-    Key? key,
+    super.key,
     this.title = "",
     this.showTitle = false,
     this.onPressed,
     this.bodyBuilder,
-  }) : super(key: key);
+  });
 
   final String title;
   final bool showTitle;
@@ -66,7 +66,7 @@ class _SuccessDialogState extends State<SuccessDialog> {
                       fontFamily: 'DiloWorld',
                     ),
                   ),
-                  Text("Congratulations", style: buttonDarkStyle)
+                  Text("Congratulations", style: buttonDarkStyle),
                 ],
               ),
               if (widget.bodyBuilder != null) ...[

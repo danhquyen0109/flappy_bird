@@ -5,12 +5,12 @@ import 'package:galaxy_bird/game_manager.dart';
 
 class Gold extends Item {
   Gold({
-    required Sprite sprite,
-    required List<Image> effect,
-    double x = 0,
-    double y = 0,
+    required super.sprite,
+    required super.effect,
+    super.x,
+    super.y,
     this.frame = 0,
-  }) : super(sprite: sprite, effect: effect, x: x, y: y);
+  });
 
   int frame;
 
@@ -18,10 +18,10 @@ class Gold extends Item {
   void draw(Canvas canvas, Size size) {
     if (!shouldPaint) return;
     if (!isCollected) {
-      canvas.drawImage(this.sprite.path[this.frame], Offset(x, y), Paint());
+      canvas.drawImage(sprite.path[frame], Offset(x, y), Paint());
     } else {
-      canvas.drawImage(this.effect[this.frame], Offset(x, y), Paint());
-      if (this.frame == this.effect.length - 1) shouldPaint = false;
+      canvas.drawImage(effect[frame], Offset(x, y), Paint());
+      if (frame == effect.length - 1) shouldPaint = false;
     }
   }
 
@@ -30,19 +30,19 @@ class Gold extends Item {
     if (!shouldPaint) return;
     switch (gameManager.getGameState()) {
       case GameState.play:
-        this.frame += (frames % 5 == 0) ? 1 : 0;
+        frame += (frames % 5 == 0) ? 1 : 0;
         break;
       case GameState.gameOver:
-        this.shouldPaint = false;
+        shouldPaint = false;
         break;
       default:
         break;
     }
 
     if (isCollected) {
-      this.frame = this.frame % this.effect.length;
+      frame = frame % effect.length;
     } else {
-      this.frame = this.frame % this.sprite.path.length;
+      frame = frame % sprite.path.length;
     }
   }
 
@@ -66,14 +66,14 @@ class Gold extends Item {
   }
 
   @override
-  double get height => this.sprite.height.toDouble();
+  double get height => sprite.height.toDouble();
 
   @override
-  double get width => this.sprite.width.toDouble();
+  double get width => sprite.width.toDouble();
 
   @override
   void setCollect() {
-    this.frame = 0;
-    this.isCollected = true;
+    frame = 0;
+    isCollected = true;
   }
 }

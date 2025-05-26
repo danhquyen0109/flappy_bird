@@ -5,31 +5,22 @@ import 'package:flutter/painting.dart';
 
 import '../game_manager.dart';
 
-enum CrateStatus {
-  idle,
-  movingUp,
-  movingDown,
-  openClose,
-}
+enum CrateStatus { idle, movingUp, movingDown, openClose }
 
 class Crate extends Obstacle {
-  Crate({
-    required Sprite sprite,
-    this.quantity = 0,
-    this.gap = 130.0,
-  }) : super(sprite: sprite);
+  Crate({required super.sprite, this.quantity = 0, this.gap = 130.0});
 
   int quantity;
   double gap;
-  double _dx = 2;
-  double _dy = 1;
-  double _do = 1;
+  final double _dx = 2;
+  final double _dy = 1;
+  final double _do = 1;
   Item? ark;
 
   @override
   void draw(ui.Canvas canvas, ui.Size size) {
     for (int i = 0; i < obstacles.length; i++) {
-      Crate topCrate = this.obstacles[i] as Crate;
+      Crate topCrate = obstacles[i] as Crate;
       double offset = topCrate.crateStatus.hasOffset ? topCrate.threshold : 0;
 
       /// draw top crates
@@ -43,18 +34,11 @@ class Crate extends Obstacle {
       /// draw bottom crates
       double xBot = topCrate.x;
       double yBot = (topCrate.y + topCrate.height) + topCrate.gap;
-      Crate botCrate = Crate(
-        sprite: sprite,
-        quantity: topCrate.quantity,
-      )
-        ..x = xBot
-        ..y = yBot;
-      drawCrates(
-        canvas,
-        size,
-        botCrate,
-        -offset,
-      );
+      Crate botCrate =
+          Crate(sprite: sprite, quantity: topCrate.quantity)
+            ..x = xBot
+            ..y = yBot;
+      drawCrates(canvas, size, botCrate, -offset);
     }
   }
 
@@ -62,37 +46,36 @@ class Crate extends Obstacle {
   void update(GameManager gameManager, int frames) {
     if (gameManager.getGameState() != GameState.play) return;
     if (frames % 120 == 0) {
-      CrateStatus _crateStatus = CrateStatus.idle;
-      int _score = gameManager.readScore();
-      if (_score > 20) {
-        _crateStatus = frames % 480 == 0
-            ? CrateStatus.values[Random().nextInt(2) + 1]
-            : CrateStatus.idle;
-      } else if (_score > 60) {
-        _crateStatus = frames % 480 == 0
-            ? CrateStatus.values[Random().nextInt(3) + 1]
-            : CrateStatus.idle;
+      CrateStatus crateStatus = CrateStatus.idle;
+      int score = gameManager.readScore();
+      if (score > 20) {
+        crateStatus =
+            frames % 480 == 0
+                ? CrateStatus.values[Random().nextInt(2) + 1]
+                : CrateStatus.idle;
+      } else if (score > 60) {
+        crateStatus =
+            frames % 480 == 0
+                ? CrateStatus.values[Random().nextInt(3) + 1]
+                : CrateStatus.idle;
       }
-      int _maxBox = 6;
-      double _x = gameManager.getScreenSize().width;
-      double _y = -150 * min(Random().nextDouble() + 1, 1.8);
-      Crate _newCrate = Crate(
-        sprite: sprite,
-        gap: gap,
-        quantity: _maxBox,
-      )
-        ..x = _x
-        ..y = _y
-        ..crateStatus = _crateStatus;
-      if (_crateStatus == CrateStatus.idle) {
+      int maxBox = 6;
+      double x = gameManager.getScreenSize().width;
+      double y = -150 * min(Random().nextDouble() + 1, 1.8);
+      Crate newCrate =
+          Crate(sprite: sprite, gap: gap, quantity: maxBox)
+            ..x = x
+            ..y = y
+            ..crateStatus = crateStatus;
+      if (crateStatus == CrateStatus.idle) {
         Item ark = GameManager.gameItems[ItemName.gold.index].copyWith();
-        ark.x = _newCrate.x + (_newCrate.width - ark.sprite.width) / 2;
-        ark.y = _y + _newCrate.height + (gap - ark.sprite.height) / 2;
-        _newCrate.ark = ark;
+        ark.x = newCrate.x + (newCrate.width - ark.sprite.width) / 2;
+        ark.y = y + newCrate.height + (gap - ark.sprite.height) / 2;
+        newCrate.ark = ark;
       }
-      this.obstacles.add(_newCrate);
+      obstacles.add(newCrate);
     }
-    for (int i = 0; i < this.obstacles.length; i++) {
+    for (int i = 0; i < obstacles.length; i++) {
       Crate obstacle = obstacles[i] as Crate;
       obstacle.x -= _dx;
       obstacle.ark?.x -= _dx;
@@ -101,23 +84,24 @@ class Crate extends Obstacle {
       obstacle.ark?.update(gameManager, frames);
     }
 
-    if (this.obstacles.isNotEmpty && this.obstacles[0].x < -this.sprite.width) {
-      this.obstacles.removeAt(0);
+    if (obstacles.isNotEmpty && obstacles[0].x < -sprite.width) {
+      obstacles.removeAt(0);
       gameManager.setPipeStatus(true);
     }
   }
 
-  void drawCrates(ui.Canvas canvas, ui.Size size, Crate crate,
-      [double offset = 0]) {
-    ui.Image crateSprite = this.sprite.path[0];
+  void drawCrates(
+    ui.Canvas canvas,
+    ui.Size size,
+    Crate crate, [
+    double offset = 0,
+  ]) {
+    ui.Image crateSprite = sprite.path[0];
     paintImage(
       canvas: canvas,
       rect: Rect.fromPoints(
         Offset(crate.x, crate.y + offset),
-        Offset(
-          crate.x + crate.width,
-          crate.y + offset + crate.height,
-        ),
+        Offset(crate.x + crate.width, crate.y + offset + crate.height),
       ),
       alignment: Alignment.topCenter,
       image: crateSprite,
@@ -127,32 +111,34 @@ class Crate extends Obstacle {
   }
 
   @override
-  double get width => this.sprite.width.toDouble();
+  double get width => sprite.width.toDouble();
 
   @override
-  double get height => this.sprite.height.toDouble() * quantity;
+  double get height => sprite.height.toDouble() * quantity;
 
   CrateStatus crateStatus = CrateStatus.idle;
 
   double threshold = 0;
 
   void attackByMove() {
-    if (this.crateStatus == CrateStatus.idle ||
-        this.crateStatus == CrateStatus.openClose) return;
-    if (this.crateStatus == CrateStatus.movingDown) {
-      if (this.threshold == 150) {
-        this.crateStatus = CrateStatus.movingUp;
+    if (crateStatus == CrateStatus.idle ||
+        crateStatus == CrateStatus.openClose) {
+      return;
+    }
+    if (crateStatus == CrateStatus.movingDown) {
+      if (threshold == 150) {
+        crateStatus = CrateStatus.movingUp;
       } else {
-        this.threshold++;
-        this.y += _dy;
+        threshold++;
+        y += _dy;
       }
     }
-    if (this.crateStatus == CrateStatus.movingUp) {
-      if (this.threshold == 0) {
-        this.crateStatus = CrateStatus.movingDown;
+    if (crateStatus == CrateStatus.movingUp) {
+      if (threshold == 0) {
+        crateStatus = CrateStatus.movingDown;
       } else {
-        this.threshold--;
-        this.y -= _dy;
+        threshold--;
+        y -= _dy;
       }
     }
   }
@@ -160,8 +146,8 @@ class Crate extends Obstacle {
   int vector = -1;
 
   void attackBySqueeze() {
-    if (this.crateStatus != CrateStatus.openClose) return;
-    if (threshold <= -50 || (this.threshold - 1 >= this.gap ~/ 2)) {
+    if (crateStatus != CrateStatus.openClose) return;
+    if (threshold <= -50 || (threshold - 1 >= gap ~/ 2)) {
       vector = -vector;
     }
     vector > 0 ? threshold += _do : threshold -= (_do * 2);
@@ -170,13 +156,9 @@ class Crate extends Obstacle {
 
 extension ExtensionCrate on Crate {
   Crate move(Vector2 v) {
-    return Crate(
-      sprite: this.sprite,
-      quantity: this.quantity,
-      gap: this.gap,
-    )
-      ..x = this.x + v.a
-      ..y = this.y + v.b;
+    return Crate(sprite: sprite, quantity: quantity, gap: gap)
+      ..x = x + v.a
+      ..y = y + v.b;
   }
 }
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ImageScaleTransition extends StatefulWidget {
-  ImageScaleTransition({
-    Key? key,
+  const ImageScaleTransition({
+    super.key,
     this.aspectRatio = 1,
     required this.backgroundImage,
     this.fit = BoxFit.cover,
@@ -10,7 +10,7 @@ class ImageScaleTransition extends StatefulWidget {
     this.begin = 0.8,
     this.end = 1.0,
     required this.width,
-  }) : super(key: key);
+  });
 
   final double aspectRatio;
   final String backgroundImage;
@@ -21,6 +21,7 @@ class ImageScaleTransition extends StatefulWidget {
   final double width;
 
   @override
+  // ignore: library_private_types_in_public_api
   _ImageScaleTransitionState createState() => _ImageScaleTransitionState();
 }
 
@@ -32,9 +33,10 @@ class _ImageScaleTransitionState extends State<ImageScaleTransition>
   @override
   void initState() {
     _controller = AnimationController(duration: widget.duration, vsync: this);
-    _animation = Tween<double>(begin: widget.begin, end: widget.end).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.linear),
-    );
+    _animation = Tween<double>(
+      begin: widget.begin,
+      end: widget.end,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     _controller.repeat(reverse: true);
     super.initState();
   }
@@ -53,10 +55,7 @@ class _ImageScaleTransitionState extends State<ImageScaleTransition>
         width: widget.width,
         child: AspectRatio(
           aspectRatio: widget.aspectRatio,
-          child: Image.asset(
-            widget.backgroundImage,
-            fit: widget.fit,
-          ),
+          child: Image.asset(widget.backgroundImage, fit: widget.fit),
         ),
       ),
     );

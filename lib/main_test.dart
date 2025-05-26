@@ -7,8 +7,9 @@ import 'package:flutter/scheduler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ui.Image sprite =
-      await GameUtils.loadImage("assets/images/objects/crate1.png");
+  ui.Image sprite = await GameUtils.loadImage(
+    "assets/images/objects/crate1.png",
+  );
   runApp(FlipFlop(sprite: sprite));
 }
 
@@ -32,6 +33,7 @@ class MyGamePage extends StatefulWidget {
   final ui.Image sprite;
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyGamePageState createState() => _MyGamePageState();
 }
 

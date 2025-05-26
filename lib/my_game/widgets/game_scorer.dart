@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GameScorer extends StatelessWidget {
-  const GameScorer({Key? key, this.onRestart, this.onPaused}) : super(key: key);
+  const GameScorer({super.key, this.onRestart, this.onPaused});
 
   final Function? onRestart;
   final Function(bool isPaused, VoidCallback onStart)? onPaused;

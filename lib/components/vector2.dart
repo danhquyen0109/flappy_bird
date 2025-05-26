@@ -10,17 +10,17 @@ class Vector2 {
     return Vector2(a: a ?? this.a, b: b ?? this.b);
   }
 
-  static const zero = const Vector2(a: 0, b: 0);
+  static const zero = Vector2(a: 0, b: 0);
 
   double get value => sqrt(a * a + b * b);
 
   Vector2 move(Vector2 v) => this + v;
 
   Vector2 operator +(Vector2 other) {
-    return Vector2(a: this.a + other.a, b: this.b + other.b);
+    return Vector2(a: a + other.a, b: b + other.b);
   }
 
   Vector2 operator -(Vector2 other) {
-    return Vector2(a: this.a - other.a, b: this.b - other.b);
+    return Vector2(a: a - other.a, b: b - other.b);
   }
 }

@@ -14,14 +14,14 @@ enum ItemType {
 
 abstract class Item extends Component {
   Item({
-    required Sprite sprite,
+    required super.sprite,
     required this.effect,
-    double x = 0,
-    double y = 0,
+    super.x,
+    super.y,
     this.iat = 0,
     this.netWorth = 0,
     this.isCollected = false,
-  }) : super(sprite: sprite, x: x, y: y);
+  });
 
   List<Image> effect;
 
@@ -39,7 +39,7 @@ abstract class Item extends Component {
 
   void setCollect();
 
-  bool get isExpired => this.iat < 0;
+  bool get isExpired => iat < 0;
 
   Item copyWith({
     Sprite? sprite,

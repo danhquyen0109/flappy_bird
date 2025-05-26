@@ -288,7 +288,7 @@ class _BirdAvatar extends StatelessWidget {
                     fontSize: 16,
                   ),
                   const SizedBox(height: 4),
-                  Container(
+                  SizedBox(
                     width: width,
                     child: BirdWidget(
                       key: Key('${birdModel.name}_$isSelected'),
@@ -346,7 +346,7 @@ class _BirdAvatar extends StatelessWidget {
       );
     } else if (isBought || isSelected) {
       return CustomText(
-        "${isSelected ? 'Selected' : 'Use'}",
+        isSelected ? 'Selected' : 'Use',
         textAlign: TextAlign.center,
         fontSize: isTapped || isSelected ? 12 : 16,
         fontWeight: FontWeight.w800,

@@ -1,13 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:galaxy_bird/components/components.dart';
 
-enum MapType {
-  unknown,
-  graveyard,
-  desert,
-  spring,
-  winter,
-}
+enum MapType { unknown, graveyard, desert, spring, winter }
 
 class MapModel extends Equatable {
   const MapModel({
@@ -27,25 +21,25 @@ class MapModel extends Equatable {
   final double spriteRatio;
 
   MapModel.fromJson(Map<String, dynamic> json)
-      : sprites = (json['sprites'] as List).map((e) => e.toString()).toList(),
-        type = json['type'],
-        mapType = json['mapType'],
-        name = json['name'],
-        cost = json['cost'],
-        spriteRatio = json['spriteRatio'];
+    : sprites = (json['sprites'] as List).map((e) => e.toString()).toList(),
+      type = json['type'],
+      mapType = json['mapType'],
+      name = json['name'],
+      cost = json['cost'],
+      spriteRatio = json['spriteRatio'];
 
   Map<String, dynamic> toJson() => {
-        'sprites': sprites,
-        'type': type,
-        'mapType': mapType,
-        'name': name,
-        'cost': cost,
-      };
+    'sprites': sprites,
+    'type': type,
+    'mapType': mapType,
+    'name': name,
+    'cost': cost,
+  };
 
   @override
   List<Object?> get props => [name];
 
-  static const empty = const MapModel(
+  static const empty = MapModel(
     sprites: ['assets/images/background/jungle2.png'],
     mapType: MapType.spring,
     type: ItemType.free,

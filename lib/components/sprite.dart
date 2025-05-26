@@ -7,21 +7,18 @@ class Sprite {
 
   final int delegateFrame;
 
-  int get width => this.path[delegateFrame].width;
+  int get width => path[delegateFrame].width;
 
-  int get height => this.path[delegateFrame].height;
+  int get height => path[delegateFrame].height;
 
-  int get length => this.path.length;
+  int get length => path.length;
 
-  Sprite copyWith({
-    List<ui.Image>? path,
-    int? delegateFrame,
-  }) {
+  Sprite copyWith({List<ui.Image>? path, int? delegateFrame}) {
     return Sprite(
       path: path ?? this.path,
       delegateFrame: delegateFrame ?? this.delegateFrame,
     );
   }
 
-  static const empty = const Sprite(path: [], delegateFrame: 0);
+  static const empty = Sprite(path: [], delegateFrame: 0);
 }

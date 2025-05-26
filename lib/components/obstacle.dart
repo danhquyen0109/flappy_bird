@@ -3,10 +3,7 @@ import 'package:galaxy_bird/components/components.dart';
 import 'package:galaxy_bird/game_manager.dart';
 
 class Obstacle extends Component {
-  Obstacle({
-    required Sprite sprite,
-  }) : super(sprite: sprite);
-
+  Obstacle({required super.sprite});
 
   List<Obstacle> obstacles = [];
 
@@ -20,11 +17,11 @@ class Obstacle extends Component {
     // TODO: implement update
   }
 
-  void reset() => this.obstacles.clear();
+  void reset() => obstacles.clear();
 
-  bool get isEmpty => this.obstacles.isEmpty;
+  bool get isEmpty => obstacles.isEmpty;
 
-  bool get isNotEmpty => this.obstacles.isNotEmpty;
+  bool get isNotEmpty => obstacles.isNotEmpty;
 
   @override
   double get height => throw UnimplementedError();

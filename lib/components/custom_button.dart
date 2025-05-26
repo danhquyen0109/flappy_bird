@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({
+    super.key,
     this.height = 60,
     this.onPressed,
     this.clickImagePath = 'assets/images/buttons/click_btn.png',

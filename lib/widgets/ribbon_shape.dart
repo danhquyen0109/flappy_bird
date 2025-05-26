@@ -1,6 +1,5 @@
 import 'package:galaxy_bird/theme.dart';
 import 'package:galaxy_bird/themes/colors.dart';
-import 'package:galaxy_bird/utils/utils.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 

@@ -6,10 +6,7 @@ import 'package:galaxy_bird/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class GetReady extends Component {
-  GetReady({
-    required super.sprite,
-    this.frame = 0,
-  });
+  GetReady({required super.sprite, this.frame = 0});
 
   int frame;
 
@@ -18,14 +15,14 @@ class GetReady extends Component {
   @override
   void draw(ui.Canvas canvas, ui.Size size) {
     drawReadyText(canvas, size);
-    double x = (size.width - this.sprite.width) / 2;
-    double y = (size.height - this.sprite.height) / 2 - 20;
-    Offset a = new Offset(x, y);
-    Offset b = new Offset(x + this.sprite.width, y + x + this.sprite.height);
+    double x = (size.width - sprite.width) / 2;
+    double y = (size.height - sprite.height) / 2 - 20;
+    Offset a = Offset(x, y);
+    Offset b = Offset(x + sprite.width, y + x + sprite.height);
     paintImage(
       canvas: canvas,
       rect: Rect.fromPoints(a, b),
-      image: this.sprite.path[this.frame],
+      image: sprite.path[frame],
       fit: BoxFit.contain,
     );
   }
@@ -37,8 +34,8 @@ class GetReady extends Component {
       case GameState.pause:
       case GameState.ready:
         gameManager.gameReady();
-        this.frame += (frames % 10 == 0) ? 1 : 0;
-        this.frame = this.frame % this.sprite.length;
+        frame += (frames % 10 == 0) ? 1 : 0;
+        frame = frame % sprite.length;
         break;
       default:
         break;
@@ -53,18 +50,12 @@ class GetReady extends Component {
       fontSize: 32,
       color: DSColors.lighteningYellow,
     );
-    final textSpan1 = TextSpan(
-      text: title,
-      style: textStyle1,
-    );
+    final textSpan1 = TextSpan(text: title, style: textStyle1);
     final textPainter1 = TextPainter(
       text: textSpan1,
       textDirection: TextDirection.ltr,
     );
-    textPainter1.layout(
-      minWidth: 0,
-      maxWidth: size.width,
-    );
+    textPainter1.layout(minWidth: 0, maxWidth: size.width);
 
     ///
     final textStyle2 = TextStyle(
@@ -72,24 +63,19 @@ class GetReady extends Component {
       fontFamily: fontFamily,
       fontWeight: FontWeight.bold,
       fontSize: 32,
-      foreground: Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2
-        ..color = DSColors.white,
-        // ..color = Color(0xff346434),
+      foreground:
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2
+            ..color = DSColors.white,
+      // ..color = Color(0xff346434),
     );
-    final textSpan2 = TextSpan(
-      text: title,
-      style: textStyle2,
-    );
+    final textSpan2 = TextSpan(text: title, style: textStyle2);
     final textPainter2 = TextPainter(
       text: textSpan2,
       textDirection: TextDirection.ltr,
     );
-    textPainter2.layout(
-      minWidth: 0,
-      maxWidth: size.width,
-    );
+    textPainter2.layout(minWidth: 0, maxWidth: size.width);
 
     final xCenter = ((size.width - textPainter1.width) / 2);
     final yCenter = (size.height - textPainter1.height) / 2 + 20;
@@ -99,8 +85,8 @@ class GetReady extends Component {
   }
 
   @override
-  double get height => this.sprite.height.toDouble();
+  double get height => sprite.height.toDouble();
 
   @override
-  double get width => this.sprite.width.toDouble();
+  double get width => sprite.width.toDouble();
 }

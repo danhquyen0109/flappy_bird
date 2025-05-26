@@ -58,42 +58,52 @@ abstract class GameManager {
   List<Item> getAvailableItems();
 
   static Future<List<Component>> initComponents() async {
-    ui.Image gndImg =
-        await GameUtils.loadImage("assets/images/background/ground2.png");
+    ui.Image gndImg = await GameUtils.loadImage(
+      "assets/images/background/ground2.png",
+    );
 
     int bWN = 40;
     ui.Image explodeImg0 = await GameUtils.loadImageFitSize(
-        "assets/images/birds/explode/frame-1.png",
-        bWN,
-        bWN ~/ GameConstant.explodeRatio);
+      "assets/images/birds/explode/frame-1.png",
+      bWN,
+      bWN ~/ GameConstant.explodeRatio,
+    );
     ui.Image explodeImg1 = await GameUtils.loadImageFitSize(
-        "assets/images/birds/explode/frame-2.png",
-        bWN,
-        bWN ~/ GameConstant.explodeRatio);
+      "assets/images/birds/explode/frame-2.png",
+      bWN,
+      bWN ~/ GameConstant.explodeRatio,
+    );
     ui.Image explodeImg2 = await GameUtils.loadImageFitSize(
-        "assets/images/birds/explode/frame-3.png",
-        bWN,
-        bWN ~/ GameConstant.explodeRatio);
+      "assets/images/birds/explode/frame-3.png",
+      bWN,
+      bWN ~/ GameConstant.explodeRatio,
+    );
     ui.Image explodeImg3 = await GameUtils.loadImageFitSize(
-        "assets/images/birds/explode/frame-4.png",
-        bWN,
-        bWN ~/ GameConstant.explodeRatio);
+      "assets/images/birds/explode/frame-4.png",
+      bWN,
+      bWN ~/ GameConstant.explodeRatio,
+    );
     ui.Image explodeImg4 = await GameUtils.loadImageFitSize(
-        "assets/images/birds/explode/frame-1.png",
-        bWN,
-        bWN ~/ GameConstant.explodeRatio);
+      "assets/images/birds/explode/frame-1.png",
+      bWN,
+      bWN ~/ GameConstant.explodeRatio,
+    );
     ui.Image explodeImg5 = await GameUtils.loadImageFitSize(
-        "assets/images/birds/explode/frame-2.png",
-        bWN,
-        bWN ~/ GameConstant.explodeRatio);
+      "assets/images/birds/explode/frame-2.png",
+      bWN,
+      bWN ~/ GameConstant.explodeRatio,
+    );
 
-    ui.Image getReadyImg1 =
-        await GameUtils.loadImage("assets/images/click.png");
-    ui.Image getReadyImg2 =
-        await GameUtils.loadImage("assets/images/unclick.png");
+    ui.Image getReadyImg1 = await GameUtils.loadImage(
+      "assets/images/click.png",
+    );
+    ui.Image getReadyImg2 = await GameUtils.loadImage(
+      "assets/images/unclick.png",
+    );
 
-    ui.Image crate =
-        await GameUtils.loadImage("assets/images/objects/crate3.png");
+    ui.Image crate = await GameUtils.loadImage(
+      "assets/images/objects/crate3.png",
+    );
     List<Component> components = [];
     // Background will be draw first
     components.add(Background(sprite: Sprite(path: [])));
@@ -103,19 +113,22 @@ abstract class GameManager {
     // Ground will be draw on background and pipes
     components.add(Ground(sprite: Sprite(path: [gndImg])));
     components.add(Board());
-    components.add(Bird(
-      spriteList: [],
-      deadSprites: [
-        explodeImg0,
-        explodeImg1,
-        explodeImg2,
-        explodeImg3,
-        explodeImg4,
-        explodeImg5,
-      ],
-    ));
-    components
-        .add(GetReady(sprite: Sprite(path: [getReadyImg1, getReadyImg2])));
+    components.add(
+      Bird(
+        spriteList: [],
+        deadSprites: [
+          explodeImg0,
+          explodeImg1,
+          explodeImg2,
+          explodeImg3,
+          explodeImg4,
+          explodeImg5,
+        ],
+      ),
+    );
+    components.add(
+      GetReady(sprite: Sprite(path: [getReadyImg1, getReadyImg2])),
+    );
     return components;
   }
 
@@ -124,13 +137,16 @@ abstract class GameManager {
     List<ui.Image> fogEffect = [];
     for (int i = 0; i < 4; i++) {
       ui.Image fog = await GameUtils.loadImageFitSize(
-          "assets/images/objects/fog${i + 1}.png", 30, 30);
+        "assets/images/objects/fog${i + 1}.png",
+        30,
+        30,
+      );
       fogEffect.add(fog);
     }
     List<Item> items = [];
 
     /// Fruit
-    ItemName.values.forEach((item) async {
+    for (final item in ItemName.values) {
       String imagePath = item.imagePath;
       if (imagePath.contains("fruit")) {
         List<ui.Image> fruits = [];
@@ -138,32 +154,45 @@ abstract class GameManager {
         fruits.add(f);
         items.add(Fruit(sprite: Sprite(path: fruits), effect: fogEffect));
       }
-    });
+    }
 
     /// Gold item
     List<ui.Image> goldItem = [];
     List<ui.Image> goldCollectedEffect = [];
     for (int i = 0; i < 16; i++) {
       ui.Image item = await GameUtils.loadImageFitSize(
-          "assets/images/objects/coin${i + 1}.png", 50, 50);
+        "assets/images/objects/coin${i + 1}.png",
+        50,
+        50,
+      );
       goldItem.add(item);
       if (i < 7) {
         ui.Image d = await GameUtils.loadImageFitSize(
-            "assets/images/objects/coin_e${i + 1}.png", 50, 50);
+          "assets/images/objects/coin_e${i + 1}.png",
+          50,
+          50,
+        );
         goldCollectedEffect.add(d);
       }
     }
-    items
-        .add(Gold(sprite: Sprite(path: goldItem), effect: goldCollectedEffect));
+    items.add(
+      Gold(sprite: Sprite(path: goldItem), effect: goldCollectedEffect),
+    );
 
     /// Magnet item
-    ui.Image magnet =
-        await GameUtils.loadImageFitSize(ItemName.magnet.imagePath, 30, 30);
+    ui.Image magnet = await GameUtils.loadImageFitSize(
+      ItemName.magnet.imagePath,
+      30,
+      30,
+    );
     items.add(Magnet(sprite: Sprite(path: [magnet]), effect: []));
 
     /// Magnet item
-    ui.Image bottle =
-        await GameUtils.loadImageFitSize(ItemName.bottle.imagePath, 30, 30);
+    ui.Image bottle = await GameUtils.loadImageFitSize(
+      ItemName.bottle.imagePath,
+      30,
+      30,
+    );
     items.add(BottlePotion(sprite: Sprite(path: [bottle]), effect: []));
     return items;
   }

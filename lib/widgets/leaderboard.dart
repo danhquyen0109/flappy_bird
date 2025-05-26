@@ -27,48 +27,45 @@ class Leaderboard extends StatelessWidget {
       children: [
         SizedBox(
           width: 30,
-          child: Image.asset(
-            'assets/images/reward.png',
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset('assets/images/reward.png', fit: BoxFit.cover),
         ),
         const SizedBox(height: 10),
-        ...scoreList
-            .asMap()
-            .entries
-            .map((entry) => Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        CustomText(
-                          '${entry.key + 1}.',
-                          fontSize: 23,
-                          strokeWidth: 1.0,
-                        ),
-                        const SizedBox(width: 16),
-                        CustomText(
-                          '${entry.value.split("@@@@")[1] == "0" ? "--" : '${entry.value.split("@@@@")[0]}:${entry.value.split("@@@@")[1]}'}',
-                          fontSize: 22,
-                          strokeWidth: .15,
-                          color: DSColors.woodSmoke,
-                          borderColor: DSColors.white,
-                        ),
-                        const SizedBox(width: 4),
-                        CustomText(
-                          'points',
-                          fontSize: 14,
-                          strokeWidth: .15,
-                          color: DSColors.woodSmoke,
-                          borderColor: DSColors.white,
-                        ),
-                      ],
-                    ),
-                    if (entry.key < 4) const SizedBox(height: 4),
-                  ],
-                ))
-            .toList(),
+        ...scoreList.asMap().entries.map(
+          (entry) => Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  CustomText(
+                    '${entry.key + 1}.',
+                    fontSize: 23,
+                    strokeWidth: 1.0,
+                  ),
+                  const SizedBox(width: 16),
+                  CustomText(
+                    entry.value.split("@@@@")[1] == "0"
+                        ? "--"
+                        : '${entry.value.split("@@@@")[0]}:${entry.value.split("@@@@")[1]}',
+                    fontSize: 22,
+                    strokeWidth: .15,
+                    color: DSColors.woodSmoke,
+                    borderColor: DSColors.white,
+                  ),
+                  const SizedBox(width: 4),
+                  CustomText(
+                    'points',
+                    fontSize: 14,
+                    strokeWidth: .15,
+                    color: DSColors.woodSmoke,
+                    borderColor: DSColors.white,
+                  ),
+                ],
+              ),
+              if (entry.key < 4) const SizedBox(height: 4),
+            ],
+          ),
+        ),
       ],
     );
   }

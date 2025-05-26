@@ -5,14 +5,14 @@ import 'package:galaxy_bird/game_manager.dart';
 
 class Magnet extends Item {
   Magnet({
-    required Sprite sprite,
-    List<Image> effect = const [],
-    double x = 0,
-    double y = 0,
-    int iat = 300,
+    required super.sprite,
+    super.effect = const [],
+    super.x,
+    super.y,
+    super.iat = 300,
     this.frame = 0,
     this.affectRadius = 300,
-  }) : super(sprite: sprite, effect: effect, x: x, y: y, iat: iat);
+  });
 
   int frame;
 
@@ -22,7 +22,7 @@ class Magnet extends Item {
   void draw(Canvas canvas, Size size) {
     if (!shouldPaint) return;
     if (!isCollected) {
-      canvas.drawImage(this.sprite.path[this.frame], Offset(x, y), Paint());
+      canvas.drawImage(sprite.path[frame], Offset(x, y), Paint());
     }
   }
 
@@ -31,14 +31,14 @@ class Magnet extends Item {
     if (!shouldPaint) return;
     switch (gameManager.getGameState()) {
       case GameState.gameOver:
-        this.shouldPaint = false;
+        shouldPaint = false;
         break;
       default:
         break;
     }
 
     if (!isCollected) {
-      this.frame = this.frame % this.sprite.path.length;
+      frame = frame % sprite.path.length;
     }
   }
 
@@ -62,15 +62,15 @@ class Magnet extends Item {
   }
 
   @override
-  double get height => this.sprite.height.toDouble();
+  double get height => sprite.height.toDouble();
 
   @override
-  double get width => this.sprite.width.toDouble();
+  double get width => sprite.width.toDouble();
 
   @override
   void setCollect() {
-    this.frame = 0;
-    this.isCollected = true;
-    this.shouldPaint = false;
+    frame = 0;
+    isCollected = true;
+    shouldPaint = false;
   }
 }

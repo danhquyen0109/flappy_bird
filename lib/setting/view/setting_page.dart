@@ -93,6 +93,7 @@ class _DialogBackground extends StatelessWidget {
               side: BorderSide(width: 2, color: DSColors.woodSmoke),
               borderRadius: BorderRadius.circular(16),
             ),
+            // ignore: deprecated_member_use
             color: DSColors.primaryColor.withOpacity(0.8),
           ),
         ),
@@ -122,14 +123,15 @@ class _PrivacyButton extends StatelessWidget {
         context.read<SettingCubit>().playButtonSound();
         showDialog(
           context: context,
-          builder: (_) => CustomDialog(
-            showSecondaryButton: false,
-            showPrimaryButton: true,
-            primaryText: "OK",
-            primaryButtonPressed: () => Navigator.pop(context),
-            bodyMarginBottom: 100,
-            bodyWidget: PrivacyWidget(),
-          ),
+          builder:
+              (_) => CustomDialog(
+                showSecondaryButton: false,
+                showPrimaryButton: true,
+                primaryText: "OK",
+                primaryButtonPressed: () => Navigator.pop(context),
+                bodyMarginBottom: 100,
+                bodyWidget: PrivacyWidget(),
+              ),
         );
       },
       shadowColor: DSColors.woodSmoke,
@@ -213,18 +215,19 @@ class _ScoreButton extends StatelessWidget {
         context.read<SettingCubit>().playButtonSound();
         showDialog(
           context: context,
-          builder: (_) => CustomDialog(
-            height: MediaQuery.of(context).size.height / 1.5,
-            showSecondaryButton: false,
-            showPrimaryButton: true,
-            primaryText: "OK",
-            title: "Leaderboard",
-            showTitle: true,
-            showCloseButton: false,
-            primaryButtonPressed: () => Navigator.pop(context),
-            bodyMarginBottom: 100,
-            bodyWidget: Leaderboard(),
-          ),
+          builder:
+              (_) => CustomDialog(
+                height: MediaQuery.of(context).size.height / 1.5,
+                showSecondaryButton: false,
+                showPrimaryButton: true,
+                primaryText: "OK",
+                title: "Leaderboard",
+                showTitle: true,
+                showCloseButton: false,
+                primaryButtonPressed: () => Navigator.pop(context),
+                bodyMarginBottom: 100,
+                bodyWidget: Leaderboard(),
+              ),
         );
       },
       shadowColor: DSColors.woodSmoke,

@@ -12,6 +12,7 @@ enum AdUnits {
 
 class GameConstant {
 
+  // ignore: constant_identifier_names
   static const double RAD = pi / 180;
 
   static const String isFirstTime = 'IS_FIRST_TIME';

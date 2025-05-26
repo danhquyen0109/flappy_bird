@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:galaxy_bird/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:galaxy_bird/my_game/my_game.dart';
@@ -5,10 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:galaxy_bird/theme.dart';
 
 class PauseDialog extends StatelessWidget {
-  const PauseDialog({
-    this.onHome,
-    this.onContinue,
-  });
+  const PauseDialog({super.key, this.onHome, this.onContinue});
 
   final VoidCallback? onHome;
   final VoidCallback? onContinue;
@@ -41,8 +40,11 @@ class PauseDialog extends StatelessWidget {
                     context.read<MyGameCubit>().playButtonSound();
                     onHome?.call();
                   },
-                  builder: (isTap) =>
-                      Text('Home', style: isTap ? buttonSmallFont : buttonFont),
+                  builder:
+                      (isTap) => Text(
+                        'Home',
+                        style: isTap ? buttonSmallFont : buttonFont,
+                      ),
                 ),
                 const SizedBox(height: 20),
                 CustomButton(
@@ -50,8 +52,11 @@ class PauseDialog extends StatelessWidget {
                     context.read<MyGameCubit>().playButtonSound();
                     onContinue?.call();
                   },
-                  builder: (isTap) => Text('Continue',
-                      style: isTap ? buttonSmallFont : buttonFont),
+                  builder:
+                      (isTap) => Text(
+                        'Continue',
+                        style: isTap ? buttonSmallFont : buttonFont,
+                      ),
                 ),
               ],
             ),

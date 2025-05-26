@@ -17,24 +17,24 @@ class BirdModel extends Equatable {
   final double spriteRatio;
 
   BirdModel.fromJson(Map<String, dynamic> json)
-      : sprites = (json['sprites'] as List).map((e) => e.toString()).toList(),
-        type = json['type'],
-        name = json['name'],
-        cost = json['cost'],
-        spriteRatio = json['spriteRatio'];
+    : sprites = (json['sprites'] as List).map((e) => e.toString()).toList(),
+      type = json['type'],
+      name = json['name'],
+      cost = json['cost'],
+      spriteRatio = json['spriteRatio'];
 
   Map<String, dynamic> toJson() => {
-        'sprites': sprites,
-        'type': type,
-        'name': name,
-        'cost': cost,
-      };
+    'sprites': sprites,
+    'type': type,
+    'name': name,
+    'cost': cost,
+  };
 
   @override
   List<Object?> get props => [name];
 
-  static const empty = const BirdModel(
-    sprites: const [
+  static const empty = BirdModel(
+    sprites: [
       'assets/images/birds/char2/frame-1.png',
       'assets/images/birds/char2/frame-2.png',
       'assets/images/birds/char2/frame-3.png',

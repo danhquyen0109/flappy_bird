@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 
 class UserGuide extends StatefulWidget {
+  const UserGuide({super.key});
+
   @override
   State<UserGuide> createState() => _UserGuideState();
 }

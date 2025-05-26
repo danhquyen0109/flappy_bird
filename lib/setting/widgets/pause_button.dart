@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PauseButton extends StatefulWidget {
-  const PauseButton({this.onPaused, this.width = 40});
+  const PauseButton({super.key, this.onPaused, this.width = 40});
 
   final Function(bool isPaused, VoidCallback onStart)? onPaused;
   final double width;
 
   @override
+  // ignore: library_private_types_in_public_api
   _PauseButtonState createState() => _PauseButtonState();
 }
 
@@ -25,15 +26,17 @@ class _PauseButtonState extends State<PauseButton> {
         widget.onPaused?.call(_isPaused, onStart);
       },
       child: Icon(
-        _isPaused? const IconData(
-          0xf487,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage,
-        ):const IconData(
-          0xf736,
-          fontFamily: CupertinoIcons.iconFont,
-          fontPackage: CupertinoIcons.iconFontPackage,
-        ),
+        _isPaused
+            ? const IconData(
+              0xf487,
+              fontFamily: CupertinoIcons.iconFont,
+              fontPackage: CupertinoIcons.iconFontPackage,
+            )
+            : const IconData(
+              0xf736,
+              fontFamily: CupertinoIcons.iconFont,
+              fontPackage: CupertinoIcons.iconFontPackage,
+            ),
         size: 30,
       ),
     );

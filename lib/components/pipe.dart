@@ -5,22 +5,19 @@ import 'package:galaxy_bird/game_manager.dart';
 import 'package:flutter/painting.dart';
 
 class Pipe extends Obstacle {
-  Pipe({
-    required Sprite sprite,
-    this.gap = 115,
-  }) : super(sprite: sprite);
+  Pipe({required super.sprite, this.gap = 115});
 
   /// space between 2 pipes
   int gap;
 
-  double _dx = 2;
+  final double _dx = 2;
 
   @override
   void draw(ui.Canvas canvas, ui.Size size) {
     for (int i = 0; i < obstacles.length; i++) {
-      final p = this.obstacles[i];
-      ui.Image topSprite = this.sprite.path[0];
-      ui.Image botSprite = this.sprite.path[1];
+      final p = obstacles[i];
+      ui.Image topSprite = sprite.path[0];
+      ui.Image botSprite = sprite.path[1];
 
       double xTop = p.x;
       double yTop = p.y;
@@ -39,7 +36,7 @@ class Pipe extends Obstacle {
       );
 
       double xBot = p.x;
-      double yBot = (p.y + topSprite.height) + this.gap;
+      double yBot = (p.y + topSprite.height) + gap;
 
       /// draw bot pipe
       paintImage(
@@ -58,19 +55,21 @@ class Pipe extends Obstacle {
 
   @override
   void update(GameManager gameManager, int frames) {
-
     if (gameManager.getGameState() != GameState.play) return;
     if (frames % 100 == 0) {
-      double _x = gameManager.getScreenSize().width;
-      double _y = -150 * min(Random().nextDouble() + 1, 1.8);
-      this.obstacles.add(Pipe(sprite: sprite, gap: gap)
-        ..x = _x
-        ..y = _y);
+      double x = gameManager.getScreenSize().width;
+      double y = -150 * min(Random().nextDouble() + 1, 1.8);
+      obstacles.add(
+        Pipe(sprite: sprite, gap: gap)
+          ..x = x
+          ..y = y,
+      );
     }
-    this.obstacles.forEach((p) => p.x -= _dx);
-    if (this.obstacles.isNotEmpty &&
-        this.obstacles[0].x < -this.sprite.width) {
-      this.obstacles.removeAt(0);
+    for (var p in obstacles) {
+      p.x -= _dx;
+    }
+    if (obstacles.isNotEmpty && obstacles[0].x < -sprite.width) {
+      obstacles.removeAt(0);
       gameManager.setPipeStatus(true);
     }
   }

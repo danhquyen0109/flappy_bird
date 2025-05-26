@@ -185,18 +185,18 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
       BirdModel bird, List<Component> components) async {
     int bWN = 34;
     int bHN = bWN ~/ bird.spriteRatio;
-    List<ui.Image> _normalBird = [];
+    List<ui.Image> normalBird = [];
 
     int bWS = 20;
     int bHS = bWS ~/ bird.spriteRatio;
-    List<ui.Image> _smallBird = [];
+    List<ui.Image> smallBird = [];
     for (String sprite in bird.sprites) {
-      _normalBird.add(await GameUtils.loadImageFitSize(sprite, bWN, bHN));
-      _smallBird.add(await GameUtils.loadImageFitSize(sprite, bWS, bHS));
+      normalBird.add(await GameUtils.loadImageFitSize(sprite, bWN, bHN));
+      smallBird.add(await GameUtils.loadImageFitSize(sprite, bWS, bHS));
     }
     (components[4] as Bird).sprites = [
-      Sprite(path: _normalBird),
-      Sprite(path: _smallBird),
+      Sprite(path: normalBird),
+      Sprite(path: smallBird),
     ];
   }
 
@@ -223,11 +223,11 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
       emit(state.copyWith(currentBird: bird));
       playSound(path: 'bird_collect');
     } else if (bird.type == ItemType.needBuyByCoin && state.coin >= bird.cost) {
-      int _myBirdsMemory = prefs.getInt(GameConstant.myBirds) ?? 0;
-      _myBirdsMemory += pow(2, index).toInt();
-      await prefs.setInt(GameConstant.myBirds, _myBirdsMemory);
+      int myBirdsMemory = prefs.getInt(GameConstant.myBirds) ?? 0;
+      myBirdsMemory += pow(2, index).toInt();
+      await prefs.setInt(GameConstant.myBirds, myBirdsMemory);
       await prefs.setInt(GameConstant.coin, state.coin - bird.cost);
-      List<BirdModel> myBirds = []..addAll(state.myBirds);
+      List<BirdModel> myBirds = [...state.myBirds];
       myBirds.add(bird);
       emit(state.copyWith(coin: state.coin - bird.cost, myBirds: myBirds));
       playSound(path: 'unlock');
@@ -236,11 +236,11 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
       onFailure?.call(SettingStatus.needMoreCoin);
     } else if (bird.type == ItemType.needBuyByFruit &&
         state.fruit >= bird.cost) {
-      int _myBirdsMemory = prefs.getInt(GameConstant.myBirds) ?? 0;
-      _myBirdsMemory += pow(2, index).toInt();
-      await prefs.setInt(GameConstant.myBirds, _myBirdsMemory);
+      int myBirdsMemory = prefs.getInt(GameConstant.myBirds) ?? 0;
+      myBirdsMemory += pow(2, index).toInt();
+      await prefs.setInt(GameConstant.myBirds, myBirdsMemory);
       await prefs.setInt(GameConstant.fruit, state.fruit - bird.cost);
-      List<BirdModel> myBirds = []..addAll(state.myBirds);
+      List<BirdModel> myBirds = [...state.myBirds];
       myBirds.add(bird);
       emit(state.copyWith(fruit: state.fruit - bird.cost, myBirds: myBirds));
       playSound(path: 'unlock');
@@ -259,10 +259,10 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     Function? onSuccess,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    int _myBirdsMemory = prefs.getInt(GameConstant.myBirds) ?? 0;
-    _myBirdsMemory += pow(2, index).toInt();
-    await prefs.setInt(GameConstant.myBirds, _myBirdsMemory);
-    List<BirdModel> myBirds = []..addAll(state.myBirds);
+    int myBirdsMemory = prefs.getInt(GameConstant.myBirds) ?? 0;
+    myBirdsMemory += pow(2, index).toInt();
+    await prefs.setInt(GameConstant.myBirds, myBirdsMemory);
+    List<BirdModel> myBirds = [...state.myBirds];
     myBirds.add(bird);
     emit(state.copyWith(myBirds: myBirds));
     playSound(path: 'unlock');
@@ -275,14 +275,14 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     bool isCoin = true,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    int _availableValue =
+    int availableValue =
         prefs.getInt(isCoin ? GameConstant.coin : GameConstant.fruit) ?? 0;
     await prefs.setInt(isCoin ? GameConstant.coin : GameConstant.fruit,
-        _availableValue + value);
+        availableValue + value);
     if (isCoin) {
-      emit(state.copyWith(coin: _availableValue + value));
+      emit(state.copyWith(coin: availableValue + value));
     } else {
-      emit(state.copyWith(fruit: _availableValue + value));
+      emit(state.copyWith(fruit: availableValue + value));
     }
     playSound(path: 'unlock');
     onSuccess?.call();
@@ -301,11 +301,11 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
       emit(state.copyWith(currentMap: map));
       playSound(path: 'bird_collect');
     } else if (map.type == ItemType.needBuyByCoin && state.coin >= map.cost) {
-      int _myMapsMemory = prefs.getInt(GameConstant.myMaps) ?? 0;
-      _myMapsMemory += pow(2, index).toInt();
-      await prefs.setInt(GameConstant.myMaps, _myMapsMemory);
+      int myMapsMemory = prefs.getInt(GameConstant.myMaps) ?? 0;
+      myMapsMemory += pow(2, index).toInt();
+      await prefs.setInt(GameConstant.myMaps, myMapsMemory);
       await prefs.setInt(GameConstant.coin, state.coin - map.cost);
-      List<MapModel> myMaps = []..addAll(state.myMaps);
+      List<MapModel> myMaps = [...state.myMaps];
       myMaps.add(map);
       emit(state.copyWith(coin: state.coin - map.cost, myMaps: myMaps));
       playSound(path: 'unlock');
@@ -313,11 +313,11 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     } else if (map.type == ItemType.needBuyByCoin && state.coin < map.cost) {
       onFailure?.call(SettingStatus.needMoreCoin);
     } else if (map.type == ItemType.needBuyByFruit && state.fruit >= map.cost) {
-      int _myMapsMemory = prefs.getInt(GameConstant.myMaps) ?? 0;
-      _myMapsMemory += pow(2, index).toInt();
-      await prefs.setInt(GameConstant.myMaps, _myMapsMemory);
+      int myMapsMemory = prefs.getInt(GameConstant.myMaps) ?? 0;
+      myMapsMemory += pow(2, index).toInt();
+      await prefs.setInt(GameConstant.myMaps, myMapsMemory);
       await prefs.setInt(GameConstant.fruit, state.fruit - map.cost);
-      List<MapModel> myMaps = []..addAll(state.myMaps);
+      List<MapModel> myMaps = [...state.myMaps];
       myMaps.add(map);
       emit(state.copyWith(fruit: state.fruit - map.cost, myMaps: myMaps));
       playSound(path: 'unlock');
@@ -335,10 +335,10 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     Function? onSuccess,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    int _myMapsMemory = prefs.getInt(GameConstant.myMaps) ?? 0;
-    _myMapsMemory += pow(2, index).toInt();
-    await prefs.setInt(GameConstant.myMaps, _myMapsMemory);
-    List<MapModel> myMaps = []..addAll(state.myMaps);
+    int myMapsMemory = prefs.getInt(GameConstant.myMaps) ?? 0;
+    myMapsMemory += pow(2, index).toInt();
+    await prefs.setInt(GameConstant.myMaps, myMapsMemory);
+    List<MapModel> myMaps = [...state.myMaps];
     myMaps.add(map);
     emit(state.copyWith(myMaps: myMaps));
     playSound(path: 'unlock');
