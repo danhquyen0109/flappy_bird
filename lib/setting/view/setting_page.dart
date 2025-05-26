@@ -25,15 +25,15 @@ class SettingPage extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           _Background(),
-          _DialogBackground(),
+          // _DialogBackground(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 25),
-              _ShopButton(),
-              const SizedBox(height: 20),
               _PlayButton(),
+              const SizedBox(height: 20),
+              _ShopButton(),
               const SizedBox(height: 20),
               _ScoreButton(),
               const SizedBox(height: 20),
@@ -71,43 +71,12 @@ class _Background extends StatelessWidget {
   }
 }
 
-class _DialogBackground extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width / 1.5;
-    double height = MediaQuery.of(context).size.height / 1.7;
-    return Center(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-        child: Container(
-          width: width,
-          height: height,
-          alignment: Alignment.bottomCenter,
-          margin: EdgeInsets.all(24),
-          padding: EdgeInsets.all(24),
-          decoration: ShapeDecoration(
-            shadows: [
-              BoxShadow(color: DSColors.woodSmoke, offset: Offset(0, 6)),
-            ],
-            shape: RoundedRectangleBorder(
-              side: BorderSide(width: 2, color: DSColors.woodSmoke),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            // ignore: deprecated_member_use
-            color: DSColors.primaryColor.withOpacity(0.8),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 class _PrivacyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlainShadowButton(
       borderColor: DSColors.woodSmoke,
-      color: DSColors.lighteningYellow,
+      color: DSColors.primaryColor,
       bodyBuilder: (isTapped) {
         return CustomText(
           "Privacy Policy",
@@ -130,6 +99,9 @@ class _PrivacyButton extends StatelessWidget {
                 primaryText: "OK",
                 primaryButtonPressed: () => Navigator.pop(context),
                 bodyMarginBottom: 100,
+                showTitle: true,
+                showCloseButton: false,
+                title: 'Privacy Policy',
                 bodyWidget: PrivacyWidget(),
               ),
         );
@@ -144,10 +116,10 @@ class _ShopButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlainShadowButton(
       borderColor: DSColors.woodSmoke,
-      color: DSColors.lighteningYellow,
+      color: DSColors.primaryColor,
       bodyBuilder: (isTapped) {
         return CustomText(
-          "Store",
+          "Shop",
           fontSize: isTapped ? 16 : 21,
           fontWeight: FontWeight.w800,
           strokeWidth: 1.0,
@@ -169,7 +141,7 @@ class _PlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlainShadowButton(
       borderColor: DSColors.woodSmoke,
-      color: DSColors.lighteningYellow,
+      color: DSColors.primaryColor,
       bodyBuilder: (isTapped) {
         return CustomText(
           "New Game",
@@ -200,10 +172,10 @@ class _ScoreButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlainShadowButton(
       borderColor: DSColors.woodSmoke,
-      color: DSColors.lighteningYellow,
+      color: DSColors.primaryColor,
       bodyBuilder: (isTapped) {
         return CustomText(
-          "Leaderboard",
+          "High Scores",
           fontSize: isTapped ? 16 : 21,
           fontWeight: FontWeight.w800,
           strokeWidth: 1.0,
@@ -221,7 +193,7 @@ class _ScoreButton extends StatelessWidget {
                 showSecondaryButton: false,
                 showPrimaryButton: true,
                 primaryText: "OK",
-                title: "Leaderboard",
+                title: "High Scores",
                 showTitle: true,
                 showCloseButton: false,
                 primaryButtonPressed: () => Navigator.pop(context),
@@ -244,7 +216,7 @@ class _ExitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return PlainShadowButton(
       borderColor: DSColors.woodSmoke,
-      color: DSColors.lighteningYellow,
+      color: DSColors.primaryColor,
       bodyBuilder: (isTapped) {
         return CustomText(
           "Exit",

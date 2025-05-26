@@ -53,15 +53,15 @@ class _PlainShadowButtonState extends State<PlainShadowButton> {
         height: widget.height ?? 48,
         padding: EdgeInsets.symmetric(horizontal: 16),
         decoration: ShapeDecoration(
-          shadows: [
-            BoxShadow(
-              color: isTapped ? DSColors.selago : widget.shadowColor,
-              offset: Offset(
-                0.0, // Move to right 10  horizontally
-                4.0, // Move to bottom 5 Vertically
-              ),
-            ),
-          ],
+          // shadows: [
+          //   BoxShadow(
+          //     color: isTapped ? DSColors.selago : widget.shadowColor,
+          //     offset: Offset(
+          //       0.0, // Move to right 10  horizontally
+          //       4.0, // Move to bottom 5 Vertically
+          //     ),
+          //   ),
+          // ],
           color: widget.color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),

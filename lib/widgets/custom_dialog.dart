@@ -70,7 +70,7 @@ class CustomDialog extends StatelessWidget {
               child: RibbonShape(
                 showTitle: showTitle,
                 title: title,
-                color: DSColors.lighteningYellow,
+                color: DSColors.primary500,
                 width: w * 2 / 3,
               ),
             ),
@@ -127,7 +127,7 @@ class CustomDialog extends StatelessWidget {
         if (showSecondaryButton)
           PlainShadowButton(
             borderColor: DSColors.woodSmoke,
-            color: DSColors.lighteningYellow,
+            color: DSColors.primary300,
             bodyBuilder: (isTapped) {
               return CustomText(
                 secondaryText,
@@ -146,7 +146,7 @@ class CustomDialog extends StatelessWidget {
         if (showPrimaryButton)
           PlainShadowButton(
             borderColor: DSColors.woodSmoke,
-            color: DSColors.lighteningYellow,
+            color: DSColors.primary300,
             bodyBuilder: (isTapped) {
               return CustomText(
                 primaryText,

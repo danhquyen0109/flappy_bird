@@ -30,7 +30,7 @@ class RibbonShape extends StatelessWidget {
             child: Container(
               width: width,
               height: height,
-              color: Colors.yellow,
+              color: DSColors.primary300,
             ),
           ),
         ),

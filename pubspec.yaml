@@ -17,6 +17,8 @@ dependencies:
   confetti: ^0.8.0
   share_plus: ^11.0.0
   flutter_svg: ^2.1.0
+  flame_audio: ^2.11.6
+  flame: ^1.29.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,7 @@ flutter:
     - assets/images/birds/char35/
     - assets/images/birds/char36/
     - assets/images/birds/explode/
+    - assets/audio/
   fonts:
     - family: DiloWorld
       fonts:

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:galaxy_bird/game_manager.dart';
 import 'package:galaxy_bird/my_game/my_game.dart';
 import 'package:galaxy_bird/setting/setting.dart';
@@ -89,10 +87,10 @@ class GameScorer extends StatelessWidget {
                                       strokeWidth: 1.0,
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -140,12 +138,15 @@ class GameScorer extends StatelessWidget {
                                       if (textEditingController.text
                                           .trim()
                                           .isEmpty) {
-                                        GameUtils.showSnackBar(context,
-                                            content:
-                                                "Your name is not allow to empty");
+                                        GameUtils.showSnackBar(
+                                          context,
+                                          content:
+                                              "Your name is not allow to empty",
+                                        );
                                       } else {
                                         context.read<MyGameCubit>().saveScore(
-                                            textEditingController.text);
+                                          textEditingController.text,
+                                        );
                                       }
                                       Navigator.pop(context);
                                     },
@@ -185,27 +186,6 @@ class GameScorer extends StatelessWidget {
                         shadowColor: DSColors.woodSmoke,
                       ),
                     ),
-                    if (Platform.isAndroid)
-                      Positioned(
-                        top: height / 4 + 143 + 108 + 136,
-                        child: PlainShadowButton(
-                          borderColor: DSColors.woodSmoke,
-                          color: DSColors.lighteningYellow,
-                          bodyBuilder: (isTapped) {
-                            return CustomText(
-                              "Rating Us",
-                              fontSize: isTapped ? 16 : 21,
-                              fontWeight: FontWeight.w800,
-                              strokeWidth: 1.0,
-                            );
-                          },
-                          height: 60,
-                          size: 200,
-                          callback: () =>
-                              GameSound.platform.invokeMethod('ratingUs'),
-                          shadowColor: DSColors.woodSmoke,
-                        ),
-                      )
                   ],
                 ),
               );
