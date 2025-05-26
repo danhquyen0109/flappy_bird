@@ -114,7 +114,7 @@ class _BirdAvatar extends StatelessWidget {
                     width: width,
                     child: BirdWidget(
                       key: Key('${birdModel.name}_$isSelected'),
-                      startAnimation: isSelected,
+                      startAnimation: false,
                       sprites: birdModel.sprites,
                     ),
                   ),

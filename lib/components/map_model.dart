@@ -82,15 +82,15 @@ class MapModel extends Equatable {
   String get crateImage {
     switch (mapType) {
       case MapType.graveyard:
-        return "assets/images/objects/crate3.png";
+        return "assets/images/objects/crate1.png";
       case MapType.desert:
-        return "assets/images/objects/crate2.png";
+        return "assets/images/objects/crate1.png";
       case MapType.spring:
         return "assets/images/objects/crate1.png";
       case MapType.winter:
-        return "assets/images/objects/crate4.png";
+        return "assets/images/objects/crate1.png";
       default:
-        return "";
+        return "assets/images/objects/crate1.png";
     }
   }
 }
