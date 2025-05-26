@@ -1,8 +1,10 @@
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PrivacyWidget extends StatelessWidget {
+  const PrivacyWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scrollbar(
@@ -17,7 +19,7 @@ class PrivacyWidget extends StatelessWidget {
                   text: "This app is aimed at people over 12 years old.\n",
                   style: TextStyle(
                     fontSize: 16,
-                    color: wood_smoke,
+                    color: DSColors.woodSmoke,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -39,7 +41,7 @@ class PrivacyWidget extends StatelessWidget {
                   text: "\nWe do not collect any information from you.",
                   style: TextStyle(
                     fontSize: 16,
-                    color: wood_smoke,
+                    color: DSColors.woodSmoke,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -48,7 +50,7 @@ class PrivacyWidget extends StatelessWidget {
                       "\nWe are committed to the content and functionality of the application is completely suitable for everyone.",
                   style: TextStyle(
                     fontSize: 16,
-                    color: wood_smoke,
+                    color: DSColors.woodSmoke,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -61,7 +63,7 @@ class PrivacyWidget extends StatelessWidget {
                         '\nIn matters related to this notice, you can reach us by email:',
                         style: TextStyle(
                           fontSize: 15,
-                          color: wood_smoke,
+                          color: DSColors.woodSmoke,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -86,7 +88,7 @@ class PrivacyWidget extends StatelessWidget {
                         '\nThis app includes adverts.',
                         style: TextStyle(
                           fontSize: 16,
-                          color: wood_smoke,
+                          color: DSColors.woodSmoke,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -96,7 +98,7 @@ class PrivacyWidget extends StatelessWidget {
                         '\nYou can find out more about how they use your personal information here:',
                         style: TextStyle(
                           fontSize: 15,
-                          color: wood_smoke,
+                          color: DSColors.woodSmoke,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

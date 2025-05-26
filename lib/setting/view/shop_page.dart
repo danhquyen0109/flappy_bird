@@ -1,3 +1,4 @@
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/utils/utils.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ShopPage extends StatelessWidget {
   static const routeName = "app/shop";
+
+  const ShopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +77,7 @@ class ShopPage extends StatelessWidget {
                           AssetImage("assets/images/background/springBg.png"),
                       fit: BoxFit.fill,
                     ),
-                    color: Colors.green,
+                    color: DSColors.primary500,
                     borderRadius: BorderRadius.all(Radius.circular(4.0)),
                   ),
                   width: width,
@@ -86,8 +89,8 @@ class ShopPage extends StatelessWidget {
                         'Birds',
                         fontSize: 24,
                         strokeWidth: 1.0,
-                        color: wood_smoke,
-                        borderColor: white,
+                        color: DSColors.woodSmoke,
+                        borderColor: DSColors.white,
                       ),
                     ),
                   ),

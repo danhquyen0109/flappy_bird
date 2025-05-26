@@ -1,32 +1,33 @@
 import 'dart:async';
 import 'dart:ui' as ui;
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/utils/game_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ui.Image _sprite =
+  ui.Image sprite =
       await GameUtils.loadImage("assets/images/objects/crate1.png");
-  runApp(FlipFlop(sprite: _sprite));
+  runApp(FlipFlop(sprite: sprite));
 }
 
 class FlipFlop extends StatelessWidget {
-  FlipFlop({Key? key, required this.sprite}) : super(key: key);
+  const FlipFlop({super.key, required this.sprite});
 
   final ui.Image sprite;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primaryColor: DSColors.primary500),
       home: MyGamePage(sprite: sprite),
     );
   }
 }
 
 class MyGamePage extends StatefulWidget {
-  MyGamePage({Key? key, required this.sprite}) : super(key: key);
+  const MyGamePage({super.key, required this.sprite});
 
   final ui.Image sprite;
 
@@ -39,7 +40,7 @@ class _MyGamePageState extends State<MyGamePage>
   /// FPS
   int _frames = 0;
   late final Ticker _ticker;
-  ValueNotifier<int> _frameNotifier = ValueNotifier(0);
+  final ValueNotifier<int> _frameNotifier = ValueNotifier(0);
 
   @override
   void initState() {
@@ -48,7 +49,7 @@ class _MyGamePageState extends State<MyGamePage>
   }
 
   Future<void> _initAssets() async {
-    _ticker = this.createTicker((elapsed) {
+    _ticker = createTicker((elapsed) {
       _frames++;
       _frameNotifier.value = _frames;
     });

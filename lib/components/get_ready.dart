@@ -2,14 +2,14 @@ import 'dart:ui' as ui;
 import 'package:galaxy_bird/components/components.dart';
 import 'package:galaxy_bird/game_manager.dart';
 import 'package:galaxy_bird/theme.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class GetReady extends Component {
   GetReady({
-    required Sprite sprite,
+    required super.sprite,
     this.frame = 0,
-  }) : super(sprite: sprite);
+  });
 
   int frame;
 
@@ -51,7 +51,7 @@ class GetReady extends Component {
       fontFamily: fontFamily,
       fontWeight: FontWeight.bold,
       fontSize: 32,
-      color: lightening_yellow,
+      color: DSColors.lighteningYellow,
     );
     final textSpan1 = TextSpan(
       text: title,
@@ -75,7 +75,7 @@ class GetReady extends Component {
       foreground: Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2
-        ..color = white,
+        ..color = DSColors.white,
         // ..color = Color(0xff346434),
     );
     final textSpan2 = TextSpan(

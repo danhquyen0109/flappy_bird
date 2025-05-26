@@ -15,11 +15,12 @@ import 'game_manager.dart';
 class GamePage extends StatefulWidget {
   static const routeName = "app/game";
 
-  const GamePage({Key? key, required this.components}) : super(key: key);
+  const GamePage({super.key, required this.components});
 
   final List<Component> components;
 
   @override
+  // ignore: library_private_types_in_public_api
   _GamePageState createState() => _GamePageState();
 }
 
@@ -64,20 +65,7 @@ class _GamePageState extends State<GamePage>
     if (_isInitial) return true;
     _initGame();
     gameScorer = GameScorer(
-      onRestart: () {
-        // if (gameTurn > 0 && gameTurn % 4 == 0) {
-        //   final settingCubit = context.read<SettingCubit>();
-        //   settingCubit.showInterstitialAd(
-        //     onCompleted: (interstitialAd) {
-        //       // interstitialAd.show();
-        //     },
-        //     onAdDismissed: _initGame,
-        //     onError: _initGame,
-        //   );
-        // } else {
-        //   _initGame();
-        // }
-      },
+      onRestart: _initGame,
       onPaused: (isPaused, onStart) {
         if (isPaused) {
           _ticker.stop();
@@ -86,24 +74,16 @@ class _GamePageState extends State<GamePage>
         }
       },
     );
-    _ticker = this.createTicker((elapsed) {
+    _ticker = createTicker((elapsed) {
       _frames++;
-      widget.components.forEach((element) => element.update(this, _frames));
+      for (var element in widget.components) {
+        element.update(this, _frames);
+      }
       frameNotifier.value = _frames;
     });
     _ticker.start();
     _gameState = GameState.ready;
     _isInitial = true;
-
-    // Init Ads
-    // myBanner = BannerAd(
-    //   adUnitId: GameConstant.adUnits[AdUnits.banner]!,
-    //   size: AdSize(width: MediaQuery.of(context).size.width.toInt(), height: 80),
-    //   request: AdRequest(),
-    //   listener: BannerAdListener(),
-    // );
-    // myBanner.load();
-
     return _isInitial;
   }
 
@@ -143,7 +123,7 @@ class _GamePageState extends State<GamePage>
                       break;
                   }
                 },
-                child: Container(
+                child: SizedBox(
                   width: canvasWidth,
                   height: canvasHeight,
                   child: CustomPaint(
@@ -181,7 +161,7 @@ class _GamePageState extends State<GamePage>
     board.reset();
     Obstacle obstacle = widget.components[1] as Obstacle;
     obstacle.reset();
-    this._frames = 0;
+    _frames = 0;
     _isPlayed = false;
   }
 
@@ -194,7 +174,7 @@ class _GamePageState extends State<GamePage>
 
   @override
   void gameOver() {
-    this._gameState = GameState.gameOver;
+    _gameState = GameState.gameOver;
     _myGameCubit.gameOver();
     _settingCubit.updateCoinAndFruit(
       coin: _myGameCubit.state.coin,
@@ -203,10 +183,10 @@ class _GamePageState extends State<GamePage>
   }
 
   @override
-  void gameReady() => this._gameState = GameState.ready;
+  void gameReady() => _gameState = GameState.ready;
 
   @override
-  GameState getGameState() => this._gameState;
+  GameState getGameState() => _gameState;
 
   @override
   Size getScreenSize() => Size(canvasWidth, canvasHeight);
@@ -225,16 +205,16 @@ class _GamePageState extends State<GamePage>
       _myGameCubit.updateReward(rewardType: rewardType);
 
   @override
-  void setPipeStatus(bool status) => this._isPipeRemoved = status;
+  void setPipeStatus(bool status) => _isPipeRemoved = status;
 
   @override
-  bool isPipeRemoved() => this._isPipeRemoved;
+  bool isPipeRemoved() => _isPipeRemoved;
 
   @override
-  bool isPlayed() => this._isPlayed;
+  bool isPlayed() => _isPlayed;
 
   @override
-  void setPlayed(bool status) => this._isPlayed = status;
+  void setPlayed(bool status) => _isPlayed = status;
 
   @override
   List<Item> getAvailableItems() => (widget.components[3] as Board).items;

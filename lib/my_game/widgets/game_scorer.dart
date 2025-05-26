@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:galaxy_bird/game_manager.dart';
 import 'package:galaxy_bird/my_game/my_game.dart';
 import 'package:galaxy_bird/setting/setting.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:galaxy_bird/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,7 +55,7 @@ class GameScorer extends StatelessWidget {
                             width: 200,
                             height: 100,
                             decoration: BoxDecoration(
-                              color: lightening_yellow,
+                              color: DSColors.lighteningYellow,
                               borderRadius: BorderRadius.all(
                                 Radius.circular(8.0),
                               ),
@@ -98,8 +99,8 @@ class GameScorer extends StatelessWidget {
                     Positioned(
                       top: height / 4 + 143 + 108,
                       child: PlainShadowButton(
-                        borderColor: wood_smoke,
-                        color: lightening_yellow,
+                        borderColor: DSColors.woodSmoke,
+                        color: DSColors.lighteningYellow,
                         bodyBuilder: (isTapped) {
                           return CustomText(
                             "SAVE SCORE",
@@ -159,14 +160,14 @@ class GameScorer extends StatelessWidget {
                             },
                           );
                         },
-                        shadowColor: wood_smoke,
+                        shadowColor: DSColors.woodSmoke,
                       ),
                     ),
                     Positioned(
                       top: height / 4 + 143 + 108 + 68,
                       child: PlainShadowButton(
-                        borderColor: wood_smoke,
-                        color: lightening_yellow,
+                        borderColor: DSColors.woodSmoke,
+                        color: DSColors.lighteningYellow,
                         bodyBuilder: (isTapped) {
                           return CustomText(
                             "Try Again",
@@ -181,15 +182,15 @@ class GameScorer extends StatelessWidget {
                           Navigator.pop(context);
                           onRestart?.call();
                         },
-                        shadowColor: wood_smoke,
+                        shadowColor: DSColors.woodSmoke,
                       ),
                     ),
                     if (Platform.isAndroid)
                       Positioned(
                         top: height / 4 + 143 + 108 + 136,
                         child: PlainShadowButton(
-                          borderColor: wood_smoke,
-                          color: lightening_yellow,
+                          borderColor: DSColors.woodSmoke,
+                          color: DSColors.lighteningYellow,
                           bodyBuilder: (isTapped) {
                             return CustomText(
                               "Rating Us",
@@ -202,7 +203,7 @@ class GameScorer extends StatelessWidget {
                           size: 200,
                           callback: () =>
                               GameSound.platform.invokeMethod('ratingUs'),
-                          shadowColor: wood_smoke,
+                          shadowColor: DSColors.woodSmoke,
                         ),
                       )
                   ],

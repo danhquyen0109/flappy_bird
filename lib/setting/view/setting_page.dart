@@ -5,8 +5,8 @@ import 'package:galaxy_bird/components/components.dart';
 import 'package:galaxy_bird/game_page.dart';
 import 'package:galaxy_bird/my_game/my_game.dart';
 import 'package:galaxy_bird/setting/setting.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
-import 'package:galaxy_bird/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SettingPage extends StatelessWidget {
   static const routeName = "app/setting";
 
-  SettingPage({Key? key, this.components}) : super(key: key);
+  const SettingPage({super.key, this.components});
 
   final List<Component>? components;
 
@@ -87,13 +87,13 @@ class _DialogBackground extends StatelessWidget {
           padding: EdgeInsets.all(24),
           decoration: ShapeDecoration(
             shadows: [
-              BoxShadow(color: wood_smoke, offset: Offset(0, 6)),
+              BoxShadow(color: DSColors.woodSmoke, offset: Offset(0, 6)),
             ],
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 2, color: wood_smoke),
+              side: BorderSide(width: 2, color: DSColors.woodSmoke),
               borderRadius: BorderRadius.circular(16),
             ),
-            color: primary_color.withOpacity(0.8),
+            color: DSColors.primaryColor.withOpacity(0.8),
           ),
         ),
       ),
@@ -105,8 +105,8 @@ class _PrivacyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlainShadowButton(
-      borderColor: wood_smoke,
-      color: lightening_yellow,
+      borderColor: DSColors.woodSmoke,
+      color: DSColors.lighteningYellow,
       bodyBuilder: (isTapped) {
         return CustomText(
           "Privacy Policy",
@@ -132,7 +132,7 @@ class _PrivacyButton extends StatelessWidget {
           ),
         );
       },
-      shadowColor: wood_smoke,
+      shadowColor: DSColors.woodSmoke,
     );
   }
 }
@@ -141,8 +141,8 @@ class _ShopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlainShadowButton(
-      borderColor: wood_smoke,
-      color: lightening_yellow,
+      borderColor: DSColors.woodSmoke,
+      color: DSColors.lighteningYellow,
       bodyBuilder: (isTapped) {
         return CustomText(
           "Store",
@@ -157,7 +157,7 @@ class _ShopButton extends StatelessWidget {
         context.read<SettingCubit>().playButtonSound();
         Navigator.of(context).pushNamed(ShopPage.routeName);
       },
-      shadowColor: wood_smoke,
+      shadowColor: DSColors.woodSmoke,
     );
   }
 }
@@ -166,8 +166,8 @@ class _PlayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlainShadowButton(
-      borderColor: wood_smoke,
-      color: lightening_yellow,
+      borderColor: DSColors.woodSmoke,
+      color: DSColors.lighteningYellow,
       bodyBuilder: (isTapped) {
         return CustomText(
           "New Game",
@@ -188,7 +188,7 @@ class _PlayButton extends StatelessWidget {
           arguments: settingCubit.state.components,
         );
       },
-      shadowColor: wood_smoke,
+      shadowColor: DSColors.woodSmoke,
     );
   }
 }
@@ -197,8 +197,8 @@ class _ScoreButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlainShadowButton(
-      borderColor: wood_smoke,
-      color: lightening_yellow,
+      borderColor: DSColors.woodSmoke,
+      color: DSColors.lighteningYellow,
       bodyBuilder: (isTapped) {
         return CustomText(
           "Leaderboard",
@@ -227,21 +227,21 @@ class _ScoreButton extends StatelessWidget {
           ),
         );
       },
-      shadowColor: wood_smoke,
+      shadowColor: DSColors.woodSmoke,
     );
   }
 }
 
 class _ExitButton extends StatelessWidget {
-  _ExitButton({this.height = 65});
+  const _ExitButton();
 
-  final double height;
+  final double height = 75;
 
   @override
   Widget build(BuildContext context) {
     return PlainShadowButton(
-      borderColor: wood_smoke,
-      color: lightening_yellow,
+      borderColor: DSColors.woodSmoke,
+      color: DSColors.lighteningYellow,
       bodyBuilder: (isTapped) {
         return CustomText(
           "Exit",
@@ -272,14 +272,14 @@ class _ExitButton extends StatelessWidget {
                 'Do you want to exit?',
                 fontSize: 18,
                 strokeWidth: 0.15,
-                color: wood_smoke,
-                borderColor: white,
+                color: DSColors.woodSmoke,
+                borderColor: DSColors.white,
               ),
             );
           },
         );
       },
-      shadowColor: wood_smoke,
+      shadowColor: DSColors.woodSmoke,
     );
   }
 }

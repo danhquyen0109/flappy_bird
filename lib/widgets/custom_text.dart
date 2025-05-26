@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText(
-    this.text, {
+    this.text, {super.key, 
     this.fontSize = 16,
     this.fontWeight = FontWeight.bold,
     this.fontFamily = 'Chainwhacks',
     this.strokeWidth = .75,
     this.color = Colors.white,
-    this.borderColor = wood_smoke,
+    this.borderColor = DSColors.woodSmoke,
     this.textAlign,
   });
 

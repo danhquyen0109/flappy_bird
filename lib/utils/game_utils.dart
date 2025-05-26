@@ -2,19 +2,12 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:galaxy_bird/setting/setting.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as im;
 import 'package:flutter/services.dart' show rootBundle;
 
-const primary_color = Color(0xff92e010);
-const white = Color(0xFFFFFFFF);
-const athens_gray = Color(0xFFF4F5F7);
-const lightening_yellow = Color(0xFFFFBD12);
-const flamingo = Color(0xFFF95A2C);
-const black = Color(0xFF000000);
-const wood_smoke = Color(0xFF18191F);
-const selago = Color(0xFFE9E7FC);
 
 class GameUtils {
   static Future<ui.Image> loadImage(String assetPath) async {
@@ -88,13 +81,13 @@ class GameUtils {
                 padding: const EdgeInsets.all(24),
                 decoration: ShapeDecoration(
                   shadows: [
-                    BoxShadow(color: wood_smoke, offset: Offset(0, 6)),
+                    BoxShadow(color: DSColors.woodSmoke, offset: Offset(0, 6)),
                   ],
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 2, color: wood_smoke),
+                    side: BorderSide(width: 2, color: DSColors.woodSmoke),
                     borderRadius: BorderRadius.circular(16.0),
                   ),
-                  color: white,
+                  color: DSColors.white,
                 ),
               ),
               CustomText(

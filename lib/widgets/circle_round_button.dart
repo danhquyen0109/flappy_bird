@@ -11,6 +11,7 @@ class CircleRoundButton extends StatefulWidget {
   final double size;
 
   const CircleRoundButton({
+    super.key,
     required this.borderColor,
     required this.shadowColor,
     required this.color,
@@ -58,14 +59,11 @@ class _CircleRoundButtonState extends State<CircleRoundButton> {
                 0.0, // Move to right 10  horizontally
                 4.0, // Move to bottom 5 Vertically
               ),
-            )
+            ),
           ],
           color: widget.color,
           shape: CircleBorder(
-            side: BorderSide(
-              color: widget.shadowColor,
-              width: 2,
-            ),
+            side: BorderSide(color: widget.shadowColor, width: 2),
           ),
         ),
         child: SvgPicture.asset(widget.iconPath),

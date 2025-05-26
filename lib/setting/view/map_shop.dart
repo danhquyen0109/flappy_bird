@@ -1,13 +1,14 @@
 import 'package:galaxy_bird/components/components.dart';
 import 'package:galaxy_bird/setting/setting.dart';
-import 'package:galaxy_bird/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 
 class MapShop extends StatelessWidget {
   static const routeName = "app/map_shop";
+
+  const MapShop({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -219,10 +220,10 @@ class _MapCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       margin: const EdgeInsets.only(left: 4, right: 4, bottom: 16),
       decoration: ShapeDecoration(
-        color: isSelected ? lightening_yellow : primary_color,
+        color: isSelected ? DSColors.lighteningYellow : DSColors.primaryColor,
         shadows: [
           BoxShadow(
-            color: wood_smoke,
+            color: DSColors.woodSmoke,
             offset: Offset(
               0.0, // Move to right 10  horizontally
               2.0, // Move to bottom 5 Vertically
@@ -232,7 +233,7 @@ class _MapCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
           side: BorderSide(
-              color: isSelected ? flamingo : wood_smoke, width: 2),
+              color: isSelected ? DSColors.flamingo : DSColors.woodSmoke, width: 2),
         ),
       ),
       child: Row(
@@ -245,7 +246,7 @@ class _MapCard extends StatelessWidget {
               width: w,
               height: w,
               decoration: BoxDecoration(
-                color: primary_color,
+                color: DSColors.primaryColor,
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 image: DecorationImage(
                   image: AssetImage(mapModel.sprites.first),
@@ -280,17 +281,17 @@ class _MapCard extends StatelessWidget {
 
   Widget get selectButton {
     return PlainShadowButton(
-      borderColor: wood_smoke,
+      borderColor: DSColors.woodSmoke,
       color: buttonColor,
       bodyBuilder: bodyButton,
       height: 40,
       size: 120,
-      shadowColor: isSelected ? athens_gray : wood_smoke,
+      shadowColor: isSelected ? DSColors.athensGray : DSColors.woodSmoke,
       callback: isSelected ? null : () => onTap?.call(),
     );
   }
 
-  Color get buttonColor => isSelected ? athens_gray : lightening_yellow;
+  Color get buttonColor => isSelected ? DSColors.athensGray : DSColors.lighteningYellow;
 
   Widget bodyButton(bool isTapped) {
     if ((mapModel.type == ItemType.needWatchAd ||

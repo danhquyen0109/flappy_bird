@@ -1,5 +1,5 @@
 import 'package:galaxy_bird/setting/setting.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SplashScreen extends StatefulWidget {
   static const routeName = "app/splash";
 
+  const SplashScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -110,7 +113,7 @@ class _ProgressAnimatedWidget extends AnimatedWidget {
             style: TextStyle(
               fontFamily: 'DiloWorld',
               fontWeight: FontWeight.w400,
-              color: white,
+              color: DSColors.white,
               fontSize: 16.0,
             ),
           ),
@@ -123,7 +126,7 @@ class _ProgressAnimatedWidget extends AnimatedWidget {
           lineHeight: 25.0,
           animationDuration: 0,
           percent: animation.value,
-          progressColor: Colors.greenAccent,
+          progressColor: DSColors.primary300,
           curve: Curves.slowMiddle,
           center: CustomText(
             '${(animation.value * 100).round()}%',

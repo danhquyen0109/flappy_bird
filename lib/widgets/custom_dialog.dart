@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
-import 'package:galaxy_bird/utils/utils.dart';
 
 class CustomDialog extends StatelessWidget {
-  CustomDialog({
+  const CustomDialog({
+    super.key,
     this.primaryButtonPressed,
     this.secondaryButtonPressed,
     this.showCloseButton = true,
@@ -54,14 +55,12 @@ class CustomDialog extends StatelessWidget {
             margin: const EdgeInsets.all(24),
             padding: const EdgeInsets.all(24),
             decoration: ShapeDecoration(
-              shadows: [
-                BoxShadow(color: wood_smoke, offset: Offset(0, 6)),
-              ],
+              shadows: [BoxShadow(color: DSColors.woodSmoke, offset: Offset(0, 6))],
               shape: RoundedRectangleBorder(
-                side: BorderSide(width: 2, color: wood_smoke),
+                side: BorderSide(width: 2, color: DSColors.woodSmoke),
                 borderRadius: BorderRadius.circular(borderRadius),
               ),
-              color: white,
+              color: DSColors.white,
             ),
           ),
           if (!showCloseButton)
@@ -71,31 +70,31 @@ class CustomDialog extends StatelessWidget {
               child: RibbonShape(
                 showTitle: showTitle,
                 title: title,
-                color: lightening_yellow,
+                color: DSColors.lighteningYellow,
                 width: w * 2 / 3,
               ),
             ),
           if (bodyWidget != null)
             bodyMarginBottom > 0
                 ? Positioned(
-                    top: bodyMargin,
-                    left: 20,
-                    right: 20,
-                    bottom: bodyMarginBottom,
-                    child: Container(
-                      margin: const EdgeInsets.all(20),
-                      child: bodyWidget,
-                    ),
-                  )
-                : Positioned(
-                    top: bodyMargin,
-                    left: 20,
-                    right: 20,
-                    child: Container(
-                      margin: const EdgeInsets.all(20),
-                      child: bodyWidget,
-                    ),
+                  top: bodyMargin,
+                  left: 20,
+                  right: 20,
+                  bottom: bodyMarginBottom,
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    child: bodyWidget,
                   ),
+                )
+                : Positioned(
+                  top: bodyMargin,
+                  left: 20,
+                  right: 20,
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    child: bodyWidget,
+                  ),
+                ),
           if (showCloseButton)
             Positioned(
               top: 27,
@@ -113,10 +112,7 @@ class CustomDialog extends StatelessWidget {
                 onPressed: () => Navigator.pop(context),
               ),
             ),
-          Positioned(
-            bottom: 35,
-            child: buildActionButtons(context, w),
-          ),
+          Positioned(bottom: 35, child: buildActionButtons(context, w)),
         ],
       ),
     );
@@ -130,8 +126,8 @@ class CustomDialog extends StatelessWidget {
       children: [
         if (showSecondaryButton)
           PlainShadowButton(
-            borderColor: wood_smoke,
-            color: lightening_yellow,
+            borderColor: DSColors.woodSmoke,
+            color: DSColors.lighteningYellow,
             bodyBuilder: (isTapped) {
               return CustomText(
                 secondaryText,
@@ -144,13 +140,13 @@ class CustomDialog extends StatelessWidget {
             height: 65,
             size: s,
             callback: () => secondaryButtonPressed?.call(),
-            shadowColor: wood_smoke,
+            shadowColor: DSColors.woodSmoke,
           ),
         if (showSecondaryButton & showPrimaryButton) const SizedBox(width: 10),
         if (showPrimaryButton)
           PlainShadowButton(
-            borderColor: wood_smoke,
-            color: lightening_yellow,
+            borderColor: DSColors.woodSmoke,
+            color: DSColors.lighteningYellow,
             bodyBuilder: (isTapped) {
               return CustomText(
                 primaryText,
@@ -163,7 +159,7 @@ class CustomDialog extends StatelessWidget {
             height: 65,
             size: s,
             callback: () => primaryButtonPressed?.call(),
-            shadowColor: wood_smoke,
+            shadowColor: DSColors.woodSmoke,
           ),
       ],
     );

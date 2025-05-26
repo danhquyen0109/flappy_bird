@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 
 class PlainShadowButton extends StatefulWidget {
   final Color borderColor;
@@ -11,6 +11,7 @@ class PlainShadowButton extends StatefulWidget {
   final Function(bool isTapped) bodyBuilder;
 
   const PlainShadowButton({
+    super.key,
     required this.borderColor,
     required this.shadowColor,
     required this.color,
@@ -47,31 +48,30 @@ class _PlainShadowButtonState extends State<PlainShadowButton> {
         });
       },
       child: Container(
-        width: widget.size != null
-            ? widget.size
-            : MediaQuery.of(context).size.width,
-        height: widget.height != null ? widget.height : 48,
+        width:
+            widget.size ?? MediaQuery.of(context).size.width,
+        height: widget.height ?? 48,
         padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Center(child: widget.bodyBuilder.call(isTapped)),
         decoration: ShapeDecoration(
           shadows: [
             BoxShadow(
-              color: isTapped ? selago : widget.shadowColor,
+              color: isTapped ? DSColors.selago : widget.shadowColor,
               offset: Offset(
                 0.0, // Move to right 10  horizontally
                 4.0, // Move to bottom 5 Vertically
               ),
-            )
+            ),
           ],
           color: widget.color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)),
             side: BorderSide(
-              color: isTapped ? selago : widget.borderColor,
+              color: isTapped ? DSColors.selago : widget.borderColor,
               width: 2,
             ),
           ),
         ),
+        child: Center(child: widget.bodyBuilder.call(isTapped)),
       ),
     );
   }

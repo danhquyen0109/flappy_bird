@@ -1,10 +1,12 @@
 import 'package:galaxy_bird/theme.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/utils/utils.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class RibbonShape extends StatelessWidget {
   const RibbonShape({
+    super.key,
     this.width = 200,
     this.height = 50,
     required this.color,
@@ -37,21 +39,15 @@ class RibbonShape extends StatelessWidget {
           bottom: 0.0,
           child: ClipPath(
             clipper: _TriangleClipper(),
-            child: Container(
-              width: 18.0,
-              height: 20.0,
-              color: color,
-            ),
+            child: Container(width: 18.0, height: 20.0, color: color),
           ),
         ),
         Positioned(
           bottom: 20.0,
           child: Container(
-            child: Container(
-              width: width,
-              height: 1.5,
-              color: wood_smoke,
-            ),
+            width: width,
+            height: 1.5,
+            color: DSColors.woodSmoke,
           ),
         ),
         if (showTitle)
@@ -64,8 +60,8 @@ class RibbonShape extends StatelessWidget {
               fontFamily: fontFamily,
               fontSize: 18,
               strokeWidth: 0.15,
-              color: wood_smoke,
-              borderColor: white,
+              color: DSColors.woodSmoke,
+              borderColor: DSColors.white,
             ),
           ),
       ],
@@ -81,13 +77,21 @@ class ArcClipper extends CustomClipper<Path> {
 
     var firstControlPoint = Offset(7.5, 2.0);
     var firstPoint = Offset(5.0, 5.0);
-    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
-        firstPoint.dx, firstPoint.dy);
+    path.quadraticBezierTo(
+      firstControlPoint.dx,
+      firstControlPoint.dy,
+      firstPoint.dx,
+      firstPoint.dy,
+    );
 
     var secondControlPoint = Offset(2.0, 7.5);
     var secondPoint = Offset(0.0, 15.0);
-    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
-        secondPoint.dx, secondPoint.dy);
+    path.quadraticBezierTo(
+      secondControlPoint.dx,
+      secondControlPoint.dy,
+      secondPoint.dx,
+      secondPoint.dy,
+    );
 
     path.lineTo(0.0, size.height);
     path.lineTo(size.width, size.height);

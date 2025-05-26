@@ -10,10 +10,11 @@ class GamePainter extends CustomPainter {
   final List<Component> components;
 
   @override
-  void paint(Canvas canvas, Size size) =>
-      components.forEach((component){
-        if(component.shouldPaint) component.draw(canvas, size);
-      });
+  void paint(Canvas canvas, Size size) {
+    for (Component component in components) {
+      if (component.shouldPaint) component.draw(canvas, size);
+    }
+  }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;

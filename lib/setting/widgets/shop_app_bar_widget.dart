@@ -1,6 +1,5 @@
 import 'package:galaxy_bird/components/components.dart';
-import 'package:galaxy_bird/theme.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:galaxy_bird/setting/setting.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 AppBar shopAppBarWidget(BuildContext context) => AppBar(
       flexibleSpace: Container(
-        decoration: BoxDecoration(color: primary_color),
+        decoration: BoxDecoration(color: DSColors.primaryColor),
       ),
       backgroundColor: Colors.transparent,
       titleSpacing: 0,
@@ -95,7 +94,7 @@ class _MoreCoinButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingCubit, SettingState>(
       builder: (context, state) {
-        final settingCubit = context.read<SettingCubit>();
+        context.read<SettingCubit>();
         return CupertinoButton(
           padding: const EdgeInsets.all(0.0),
           child: Icon(
@@ -142,7 +141,7 @@ class _MoreCoinButton extends StatelessWidget {
                   //                       fontFamily: fontFamily,
                   //                       fontSize: 16,
                   //                       fontWeight: FontWeight.w600,
-                  //                       color: wood_smoke,
+                  //                       color: DSColors.woodSmoke,
                   //                     ),
                   //                   ),
                   //                   const SizedBox(width: 4),
@@ -177,8 +176,8 @@ class _MoreCoinButton extends StatelessWidget {
                         'Watch ads to receive 30 coin.\nDo you want to watch?',
                         textAlign: TextAlign.center,
                         strokeWidth: 0.15,
-                        color: wood_smoke,
-                        borderColor: white,
+                        color: DSColors.woodSmoke,
+                        borderColor: DSColors.white,
                       ),
                     ],
                   ),

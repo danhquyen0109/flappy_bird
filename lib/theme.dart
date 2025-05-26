@@ -1,4 +1,4 @@
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 const fontFamily = "Chainwhacks";
@@ -35,38 +35,42 @@ final buttonDarkStyle = TextStyle(
   fontSize: 22,
   fontWeight: FontWeight.bold,
   fontFamily: 'Chainwhacks',
-  foreground: Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 1
-    ..color = wood_smoke,
+  foreground:
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1
+        ..color = DSColors.woodSmoke,
 );
 
 final roundedButtonRedStyle = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.bold,
   fontFamily: 'Chainwhacks',
-  foreground: Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 1
-    ..color = wood_smoke,
+  foreground:
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1
+        ..color = DSColors.woodSmoke,
 );
 
 final roundedButtonSmokeMediumStyle = TextStyle(
   fontSize: 18,
   fontWeight: FontWeight.bold,
   fontFamily: 'Chainwhacks',
-  foreground: Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 0.75
-    ..color = wood_smoke,
+  foreground:
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.75
+        ..color = DSColors.woodSmoke,
 );
 
 final roundedButtonSmokeStyle = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.bold,
   fontFamily: 'Chainwhacks',
-  foreground: Paint()
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 0.75
-    ..color = wood_smoke,
+  foreground:
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.75
+        ..color = DSColors.woodSmoke,
 );

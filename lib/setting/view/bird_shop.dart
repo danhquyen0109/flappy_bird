@@ -1,14 +1,14 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:galaxy_bird/setting/setting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:galaxy_bird/components/components.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
-import 'package:share_plus/share_plus.dart';
 
 class BirdShop extends StatelessWidget {
   static const routeName = "app/bird_shop";
+
+  const BirdShop({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -265,11 +265,16 @@ class _BirdAvatar extends StatelessWidget {
             width: w,
             height: w + 20,
             decoration: ShapeDecoration(
-              color: isSelected ? lightening_yellow : primary_color,
+              color:
+                  isSelected
+                      ? DSColors.lighteningYellow
+                      : DSColors.primaryColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 side: BorderSide(
-                    color: isSelected ? flamingo : wood_smoke, width: 2),
+                  color: isSelected ? DSColors.flamingo : DSColors.woodSmoke,
+                  width: 2,
+                ),
               ),
             ),
             child: Center(
@@ -300,9 +305,10 @@ class _BirdAvatar extends StatelessWidget {
                         color: Colors.black,
                         border: Border.all(color: Colors.black, width: 0.0),
                         borderRadius: BorderRadius.all(
-                            Radius.elliptical((width - 10), (width - 10) / 5)),
+                          Radius.elliptical((width - 10), (width - 10) / 5),
+                        ),
                       ),
-                    )
+                    ),
                 ],
               ),
             ),
@@ -315,17 +321,18 @@ class _BirdAvatar extends StatelessWidget {
 
   Widget get selectButton {
     return PlainShadowButton(
-      borderColor: wood_smoke,
+      borderColor: DSColors.woodSmoke,
       color: buttonColor,
       bodyBuilder: bodyButton,
       height: 40,
       size: 120,
-      shadowColor: isSelected ? athens_gray : wood_smoke,
+      shadowColor: isSelected ? DSColors.athensGray : DSColors.woodSmoke,
       callback: isSelected ? null : () => onTap?.call(),
     );
   }
 
-  Color get buttonColor => isSelected ? athens_gray : lightening_yellow;
+  Color get buttonColor =>
+      isSelected ? DSColors.athensGray : DSColors.lighteningYellow;
 
   Widget bodyButton(bool isTapped) {
     if ((birdModel.type == ItemType.needWatchAd ||

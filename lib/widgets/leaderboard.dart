@@ -1,10 +1,12 @@
 import 'package:galaxy_bird/my_game/my_game.dart';
-import 'package:galaxy_bird/utils/utils.dart';
+import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Leaderboard extends StatelessWidget {
+  const Leaderboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<String> scoreList = context.read<MyGameCubit>().state.bestScore;
@@ -50,16 +52,16 @@ class Leaderboard extends StatelessWidget {
                           '${entry.value.split("@@@@")[1] == "0" ? "--" : '${entry.value.split("@@@@")[0]}:${entry.value.split("@@@@")[1]}'}',
                           fontSize: 22,
                           strokeWidth: .15,
-                          color: wood_smoke,
-                          borderColor: white,
+                          color: DSColors.woodSmoke,
+                          borderColor: DSColors.white,
                         ),
                         const SizedBox(width: 4),
                         CustomText(
                           'points',
                           fontSize: 14,
                           strokeWidth: .15,
-                          color: wood_smoke,
-                          borderColor: white,
+                          color: DSColors.woodSmoke,
+                          borderColor: DSColors.white,
                         ),
                       ],
                     ),
