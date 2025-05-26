@@ -69,13 +69,13 @@ class MapModel extends Equatable {
       case MapType.graveyard:
         return "assets/images/background/ground2.png";
       case MapType.desert:
-        return "assets/images/background/ground4.png";
+        return "assets/images/background/ground2.png";
       case MapType.spring:
-        return "assets/images/background/ground1.png";
+        return "assets/images/background/ground2.png";
       case MapType.winter:
-        return "assets/images/background/ground3.png";
+        return "assets/images/background/ground2.png";
       default:
-        return "assets/images/background/ground3.png";
+        return "assets/images/background/ground2.png";
     }
   }
 

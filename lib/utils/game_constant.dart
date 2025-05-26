@@ -11,7 +11,6 @@ enum AdUnits {
 }
 
 class GameConstant {
-
   // ignore: constant_identifier_names
   static const double RAD = pi / 180;
 
@@ -43,9 +42,9 @@ class GameConstant {
         'assets/images/birds/char1/frame-5.png',
         'assets/images/birds/char1/frame-6.png',
       ],
-      'type': ItemType.needWatchAd,
+      'type': ItemType.needBuyByCoin,
       'name': 'Bashford',
-      'cost': 0,
+      'cost': 100,
       'spriteRatio': 395 / 373,
     },
     2: {
@@ -71,9 +70,9 @@ class GameConstant {
         'assets/images/birds/char3/frame-5.png',
         'assets/images/birds/char3/frame-6.png',
       ],
-      'type': ItemType.needShareSocial,
+      'type': ItemType.needBuyByCoin,
       'name': 'Beymar',
-      'cost': 0,
+      'cost': 200,
       'spriteRatio': 427 / 387,
     },
     4: {
@@ -85,7 +84,7 @@ class GameConstant {
         'assets/images/birds/char4/frame-5.png',
         'assets/images/birds/char4/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Barshin',
       'cost': 100,
       'spriteRatio': 449 / 410,
@@ -101,7 +100,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Babel',
-      'cost': 35,
+      'cost': 85,
       'spriteRatio': 417 / 420,
     },
     6: {
@@ -115,7 +114,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Bihanna',
-      'cost': 35,
+      'cost': 85,
       'spriteRatio': 448 / 408,
     },
     7: {
@@ -127,7 +126,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Bimaria',
-      'cost': 50,
+      'cost': 80,
       'spriteRatio': 437 / 369,
     },
     8: {
@@ -153,7 +152,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Barius',
-      'cost': 35,
+      'cost': 95,
       'spriteRatio': 481 / 349,
     },
     10: {
@@ -179,7 +178,7 @@ class GameConstant {
       ],
       'type': ItemType.needWatchAd,
       'name': 'Katy Berry',
-      'cost': 25,
+      'cost': 75,
       'spriteRatio': 427 / 432,
     },
     12: {
@@ -189,7 +188,7 @@ class GameConstant {
         'assets/images/birds/char12/frame-3.png',
         'assets/images/birds/char12/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Jhonny Beep',
       'cost': 100,
       'spriteRatio': 442 / 366,
@@ -215,7 +214,7 @@ class GameConstant {
         'assets/images/birds/char14/frame-5.png',
         'assets/images/birds/char14/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Richalison',
       'cost': 80,
       'spriteRatio': 495 / 392,
@@ -229,7 +228,7 @@ class GameConstant {
         'assets/images/birds/char15/frame-5.png',
         'assets/images/birds/char15/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Balotelli',
       'cost': 80,
       'spriteRatio': 424 / 331,
@@ -245,7 +244,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Bidal',
-      'cost': 40,
+      'cost': 100,
       'spriteRatio': 423 / 343,
     },
     17: {
@@ -257,7 +256,7 @@ class GameConstant {
         'assets/images/birds/char17/frame-5.png',
         'assets/images/birds/char17/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Bonster',
       'cost': 110,
       'spriteRatio': 480 / 402,
@@ -309,7 +308,7 @@ class GameConstant {
         'assets/images/birds/char21/frame-5.png',
         'assets/images/birds/char21/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Birlo',
       'cost': 100,
       'spriteRatio': 477 / 384,
@@ -321,7 +320,7 @@ class GameConstant {
         'assets/images/birds/char22/frame-3.png',
         'assets/images/birds/char22/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Betr Chech',
       'cost': 100,
       'spriteRatio': 474 / 376,
@@ -335,7 +334,7 @@ class GameConstant {
         'assets/images/birds/char23/frame-5.png',
         'assets/images/birds/char23/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Berry',
       'cost': 100,
       'spriteRatio': 449 / 339,
@@ -347,7 +346,7 @@ class GameConstant {
         'assets/images/birds/char24/frame-3.png',
         'assets/images/birds/char24/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Bavens',
       'cost': 110,
       'spriteRatio': 644 / 421,
@@ -397,7 +396,7 @@ class GameConstant {
         'assets/images/birds/char28/frame-3.png',
         'assets/images/birds/char28/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Maxi Bopez',
       'cost': 90,
       'spriteRatio': 450 / 359,
@@ -409,7 +408,7 @@ class GameConstant {
         'assets/images/birds/char29/frame-3.png',
         'assets/images/birds/char29/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Baka',
       'spriteRatio': 455 / 415,
       'cost': 120,
@@ -421,7 +420,7 @@ class GameConstant {
         'assets/images/birds/char30/frame-3.png',
         'assets/images/birds/char30/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Bessi',
       'cost': 200,
       'spriteRatio': 532 / 382,
@@ -435,7 +434,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Blopp',
-      'cost': 75,
+      'cost': 150,
       'spriteRatio': 550 / 410,
     },
     32: {
@@ -447,7 +446,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Bella',
-      'cost': 40,
+      'cost': 120,
       'spriteRatio': 550 / 360,
     },
     33: {
@@ -461,7 +460,7 @@ class GameConstant {
       ],
       'type': ItemType.needBuyByCoin,
       'name': 'Banchez',
-      'cost': 40,
+      'cost': 90,
       'spriteRatio': 535 / 349,
     },
     34: {
@@ -471,7 +470,7 @@ class GameConstant {
         'assets/images/birds/char34/frame-3.png',
         'assets/images/birds/char34/frame-4.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Van Bersi',
       'cost': 110,
       'spriteRatio': 455 / 369,
@@ -499,48 +498,51 @@ class GameConstant {
         'assets/images/birds/char36/frame-5.png',
         'assets/images/birds/char36/frame-6.png',
       ],
-      'type': ItemType.needBuyByFruit,
+      'type': ItemType.needBuyByCoin,
       'name': 'Bolando Lima',
       'cost': 200,
       'spriteRatio': 497 / 445,
     },
   };
 
+  static const String sunBG = 'assets/images/background/sun.jpg';
+  static const String moonBG = 'assets/images/background/moon.jpg';
+  static const String galaxyBG = 'assets/images/background/galaxy.jpg';
+  static const String bolideBG = 'assets/images/background/bolide.jpg';
+  static const String galaxyCloudBG =
+      'assets/images/background/galaxyCloud.jpg';
+  static const String marBG = 'assets/images/background/mar.jpg';
+  static const String planetBG = 'assets/images/background/planet.jpg';
+  static const String spacePaintingBG =
+      'assets/images/background/spacePainting.jpg';
+
   static const Map<int, dynamic> mapSource = {
     1: {
-      'sprites': [
-        'assets/images/background/desertBg.png',
-      ],
+      'sprites': [planetBG],
       'mapType': MapType.desert,
-      'type': ItemType.needBuyByFruit,
-      'name': 'Quatar Desert',
+      'type': ItemType.needBuyByCoin,
+      'name': 'Planets',
       'cost': 250,
       'spriteRatio': 1.0,
     },
     2: {
-      'sprites': [
-        'assets/images/background/graveyardBg.png',
-      ],
+      'sprites': [marBG],
       'mapType': MapType.graveyard,
       'type': ItemType.needBuyByCoin,
-      'name': 'Graveyard',
+      'name': 'Mars',
       'cost': 200,
       'spriteRatio': 1.0,
     },
     3: {
-      'sprites': [
-        'assets/images/background/jungle1.png',
-      ],
+      'sprites': [bolideBG],
       'mapType': MapType.spring,
-      'type': ItemType.needBuyByFruit,
-      'name': 'Wild Forest',
-      'cost': 150,
+      'type': ItemType.needBuyByCoin,
+      'name': 'Bolide Sky',
+      'cost': 350,
       'spriteRatio': 1.0,
     },
     4: {
-      'sprites': [
-        'assets/images/background/jungle2.png',
-      ],
+      'sprites': [spacePaintingBG],
       'mapType': MapType.spring,
       'type': ItemType.free,
       'name': 'Mysterious Forest',
@@ -548,41 +550,35 @@ class GameConstant {
       'spriteRatio': 1.0,
     },
     5: {
-      'sprites': [
-        'assets/images/background/desertSimple.png',
-      ],
+      'sprites': [galaxyCloudBG],
       'mapType': MapType.desert,
       'type': ItemType.needBuyByCoin,
-      'name': 'The Giza',
-      'cost': 50,
+      'name': 'Galaxy Clouds',
+      'cost': 250,
       'spriteRatio': 1.0,
     },
     6: {
-      'sprites': ['assets/images/background/springBg.png'],
+      'sprites': [galaxyBG],
       'mapType': MapType.spring,
-      'type': ItemType.needBuyByFruit,
-      'name': 'Spring',
+      'type': ItemType.needBuyByCoin,
+      'name': 'Galaxy',
       'cost': 250,
       'spriteRatio': 1.0,
     },
     7: {
-      'sprites': [
-        'assets/images/background/winterBg.png',
-      ],
+      'sprites': [moonBG],
       'mapType': MapType.winter,
       'type': ItemType.needBuyByCoin,
-      'name': 'Winter',
-      'cost': 200,
+      'name': 'Moon',
+      'cost': 500,
       'spriteRatio': 1.0,
     },
     8: {
-      'sprites': [
-        'assets/images/background/xmasNight.png',
-      ],
+      'sprites': [sunBG],
       'mapType': MapType.winter,
-      'type': ItemType.needBuyByFruit,
-      'name': 'Xmas Dark',
-      'cost': 150,
+      'type': ItemType.needBuyByCoin,
+      'name': 'Sun',
+      'cost': 500,
       'spriteRatio': 1.0,
     },
   };
@@ -592,7 +588,6 @@ class GameConstant {
     AdUnits.interstitial: "",
     AdUnits.interstitialVideo: "",
     AdUnits.rewarded: "",
-    AdUnits.rewardedInterstitial: ""
+    AdUnits.rewardedInterstitial: "",
   };
-
 }
