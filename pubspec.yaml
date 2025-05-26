@@ -1,0 +1,78 @@
+name: galaxy_bird
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  image: ^4.5.4
+  equatable: ^2.0.7
+  flutter_bloc: ^9.1.1
+  url_launcher: ^6.3.1
+  shared_preferences: ^2.5.3
+  confetti: ^0.8.0
+  share_plus: ^11.0.0
+  flutter_svg: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/icons/
+    - assets/images/
+    - assets/images/background/
+    - assets/images/objects/
+    - assets/images/birds/
+    - assets/images/birds/char1/
+    - assets/images/birds/char2/
+    - assets/images/birds/char3/
+    - assets/images/birds/char4/
+    - assets/images/birds/char5/
+    - assets/images/birds/char6/
+    - assets/images/birds/char7/
+    - assets/images/birds/char8/
+    - assets/images/birds/char9/
+    - assets/images/birds/char10/
+    - assets/images/birds/char11/
+    - assets/images/birds/char12/
+    - assets/images/birds/char13/
+    - assets/images/birds/char14/
+    - assets/images/birds/char15/
+    - assets/images/birds/char16/
+    - assets/images/birds/char17/
+    - assets/images/birds/char18/
+    - assets/images/birds/char19/
+    - assets/images/birds/char20/
+    - assets/images/birds/char21/
+    - assets/images/birds/char22/
+    - assets/images/birds/char23/
+    - assets/images/birds/char24/
+    - assets/images/birds/char25/
+    - assets/images/birds/char26/
+    - assets/images/birds/char27/
+    - assets/images/birds/char28/
+    - assets/images/birds/char29/
+    - assets/images/birds/char30/
+    - assets/images/birds/char31/
+    - assets/images/birds/char32/
+    - assets/images/birds/char33/
+    - assets/images/birds/char34/
+    - assets/images/birds/char35/
+    - assets/images/birds/char36/
+    - assets/images/birds/explode/
+  fonts:
+    - family: DiloWorld
+      fonts:
+        - asset: assets/fonts/DiloWorld.ttf
+    - family: Chainwhacks
+      fonts:
+        - asset: assets/fonts/Chainwhacks.ttf
+          weight: 700
