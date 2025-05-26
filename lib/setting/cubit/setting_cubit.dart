@@ -20,19 +20,21 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     emit(state.copyWith(status: SettingStatus.initSetting));
 
     List<Component> components = await GameManager.initComponents();
-    List<BirdModel> birds = GameConstant.birdSource.values
-        .map((json) => BirdModel.fromJson(json))
-        .toList();
-    List<MapModel> maps = GameConstant.mapSource.values
-        .map((json) => MapModel.fromJson(json))
-        .toList();
+    List<BirdModel> birds =
+        GameConstant.birdSource.values
+            .map((json) => BirdModel.fromJson(json))
+            .toList();
+    List<MapModel> maps =
+        GameConstant.mapSource.values
+            .map((json) => MapModel.fromJson(json))
+            .toList();
 
     final prefs = await SharedPreferences.getInstance();
 
     /// Config bird
     List<BirdModel> myBirds = [];
-    String myBirdsBinary =
-        (prefs.getInt(GameConstant.myBirds) ?? 0).toRadixString(2);
+    String myBirdsBinary = (prefs.getInt(GameConstant.myBirds) ?? 0)
+        .toRadixString(2);
 
     for (int i = myBirdsBinary.length - 1; i >= 0; i--) {
       if (myBirdsBinary[i] == '1') {
@@ -41,9 +43,10 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     }
 
     int curBird = prefs.getInt(GameConstant.currentBird) ?? -1;
-    BirdModel currentBird = curBird == -1
-        ? BirdModel.empty
-        : BirdModel.fromJson(GameConstant.birdSource[curBird + 1]);
+    BirdModel currentBird =
+        curBird == -1
+            ? BirdModel.empty
+            : BirdModel.fromJson(GameConstant.birdSource[curBird + 1]);
     if (myBirds.isEmpty ||
         !myBirds.any((element) => element.name == "Bashford")) {
       myBirds.add(BirdModel.empty);
@@ -52,8 +55,8 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
 
     /// Config map
     List<MapModel> myMaps = [];
-    String myMapsBinary =
-        (prefs.getInt(GameConstant.myMaps) ?? 0).toRadixString(2);
+    String myMapsBinary = (prefs.getInt(GameConstant.myMaps) ?? 0)
+        .toRadixString(2);
 
     for (int i = myMapsBinary.length - 1; i >= 0; i--) {
       if (myMapsBinary[i] == '1') {
@@ -62,9 +65,10 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     }
 
     int curMap = prefs.getInt(GameConstant.currentMap) ?? -1;
-    MapModel currentMap = curMap == -1
-        ? MapModel.empty
-        : MapModel.fromJson(GameConstant.mapSource[curMap + 1]);
+    MapModel currentMap =
+        curMap == -1
+            ? MapModel.empty
+            : MapModel.fromJson(GameConstant.mapSource[curMap + 1]);
     if (myMaps.isEmpty ||
         !myMaps.any((element) => element.name == "The Sunset")) {
       myMaps.add(MapModel.empty);
@@ -91,98 +95,10 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     );
   }
 
-  // void showRewardedAd({
-  //   Function(RewardedAd rewardedAd)? onCompleted,
-  //   Function? onError,
-  // }) {
-  //   if (state.status == SettingStatus.initRewardedAdInProgress) return;
-  //   emit(state.copyWith(status: SettingStatus.initRewardedAdInProgress));
-  //   String adUnitId = GameConstant.adUnits[AdUnits.rewarded]!;
-  //   RewardedAd.load(
-  //     adUnitId: adUnitId,
-  //     request: AdRequest(),
-  //     rewardedAdLoadCallback: RewardedAdLoadCallback(
-  //       onAdLoaded: (RewardedAd ad) {
-  //         this._rewardedAd = ad;
-  //         _rewardedAd.fullScreenContentCallback = FullScreenContentCallback(
-  //           onAdShowedFullScreenContent: (RewardedAd ad) =>
-  //               print('$ad onAdShowedFullScreenContent.'),
-  //           onAdDismissedFullScreenContent: (RewardedAd ad) {
-  //             print('$ad onAdDismissedFullScreenContent.');
-  //             ad.dispose();
-  //           },
-  //           onAdFailedToShowFullScreenContent: (RewardedAd ad, AdError error) {
-  //             print('$ad onAdFailedToShowFullScreenContent: $error');
-  //             ad.dispose();
-  //             onError?.call();
-  //           },
-  //           onAdImpression: (RewardedAd ad) =>
-  //               print('$ad impression occurred.'),
-  //         );
-  //         emit(state.copyWith(status: SettingStatus.initRewardedAdSuccess));
-  //         onCompleted?.call(_rewardedAd);
-  //       },
-  //       onAdFailedToLoad: (LoadAdError error) {
-  //         emit(state.copyWith(status: SettingStatus.initRewardedAdFailure));
-  //         onError?.call();
-  //       },
-  //     ),
-  //   );
-  // }
-
-  // void showInterstitialAd({
-  //   Function(InterstitialAd interstitialAd)? onCompleted,
-  //   Function? onAdDismissed,
-  //   Function? onError,
-  // }) {
-  //   if (state.status == SettingStatus.initInterstitialVideoInProgress) return;
-  //   emit(state.copyWith(status: SettingStatus.initInterstitialVideoInProgress));
-  //   Random r = Random();
-  //   double falseProbability = .3;
-  //   bool booleanResult = r.nextDouble() > falseProbability;
-  //   String adUnitId = booleanResult
-  //       ? GameConstant.adUnits[AdUnits.interstitialVideo]!
-  //       : GameConstant.adUnits[AdUnits.interstitial]!;
-  //   InterstitialAd.load(
-  //     adUnitId: adUnitId,
-  //     request: AdRequest(),
-  //     adLoadCallback: InterstitialAdLoadCallback(
-  //       onAdLoaded: (InterstitialAd ad) {
-  //         // Keep a reference to the ad so you can show it later.
-  //         this._interstitialAd = ad;
-  //         this._interstitialAd.fullScreenContentCallback =
-  //             FullScreenContentCallback(
-  //           onAdShowedFullScreenContent: (InterstitialAd ad) =>
-  //               print('%ad onAdShowedFullScreenContent.'),
-  //           onAdDismissedFullScreenContent: (InterstitialAd ad) {
-  //             print('$ad onAdDismissedFullScreenContent.');
-  //             ad.dispose();
-  //             onAdDismissed?.call();
-  //           },
-  //           onAdFailedToShowFullScreenContent:
-  //               (InterstitialAd ad, AdError error) {
-  //             print('$ad onAdFailedToShowFullScreenContent: $error');
-  //             ad.dispose();
-  //             onError?.call();
-  //           },
-  //           onAdImpression: (InterstitialAd ad) =>
-  //               print('$ad impression occurred.'),
-  //         );
-  //         emit(state.copyWith(
-  //             status: SettingStatus.initInterstitialVideoSuccess));
-  //         onCompleted?.call(this._interstitialAd);
-  //       },
-  //       onAdFailedToLoad: (LoadAdError error) {
-  //         emit(state.copyWith(
-  //             status: SettingStatus.initInterstitialVideoFailure));
-  //         onError?.call();
-  //       },
-  //     ),
-  //   );
-  // }
-
   Future<void> updateBirdSprites(
-      BirdModel bird, List<Component> components) async {
+    BirdModel bird,
+    List<Component> components,
+  ) async {
     int bWN = 34;
     int bHN = bWN ~/ bird.spriteRatio;
     List<ui.Image> normalBird = [];
@@ -201,7 +117,9 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
   }
 
   Future<void> updateMapSprites(
-      MapModel map, List<Component> components) async {
+    MapModel map,
+    List<Component> components,
+  ) async {
     ui.Image bgSprite = await GameUtils.loadImage(map.sprites.first);
     (components[0] as Background).sprite = Sprite(path: [bgSprite]);
     ui.Image crateSprite = await GameUtils.loadImage(map.crateImage);
@@ -277,8 +195,10 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     final prefs = await SharedPreferences.getInstance();
     int availableValue =
         prefs.getInt(isCoin ? GameConstant.coin : GameConstant.fruit) ?? 0;
-    await prefs.setInt(isCoin ? GameConstant.coin : GameConstant.fruit,
-        availableValue + value);
+    await prefs.setInt(
+      isCoin ? GameConstant.coin : GameConstant.fruit,
+      availableValue + value,
+    );
     if (isCoin) {
       emit(state.copyWith(coin: availableValue + value));
     } else {
@@ -354,5 +274,4 @@ class SettingCubit extends Cubit<SettingState> with GameSound {
     await prefs.setInt(GameConstant.fruit, state.fruit + fruit);
     emit(state.copyWith(coin: state.coin + coin, fruit: state.fruit + fruit));
   }
-
 }

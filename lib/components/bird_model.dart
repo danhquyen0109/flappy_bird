@@ -34,14 +34,7 @@ class BirdModel extends Equatable {
   List<Object?> get props => [name];
 
   static const empty = BirdModel(
-    sprites: [
-      'assets/images/birds/char2/frame-1.png',
-      'assets/images/birds/char2/frame-2.png',
-      'assets/images/birds/char2/frame-3.png',
-      'assets/images/birds/char2/frame-4.png',
-      'assets/images/birds/char2/frame-5.png',
-      'assets/images/birds/char2/frame-6.png',
-    ],
+    sprites: ['assets/images/birds/char2/frame-1.png'],
     type: ItemType.free,
     name: 'Bogpa',
     cost: 0,

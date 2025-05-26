@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:galaxy_bird/components/components.dart';
+import 'package:galaxy_bird/utils/game_constant.dart';
 
 enum MapType { unknown, graveyard, desert, spring, winter }
 
@@ -40,10 +41,10 @@ class MapModel extends Equatable {
   List<Object?> get props => [name];
 
   static const empty = MapModel(
-    sprites: ['assets/images/background/jungle2.png'],
+    sprites: [GameConstant.spacePaintingBG],
     mapType: MapType.spring,
     type: ItemType.free,
-    name: 'Mysterious Forest',
+    name: 'Space Painting',
     cost: 0,
     spriteRatio: 1.0,
   );

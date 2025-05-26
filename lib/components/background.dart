@@ -18,6 +18,7 @@ class Background extends Component {
       rect: Rect.fromPoints(a, b),
       image: sprite.path[frame],
       fit: BoxFit.cover,
+      opacity: 0.9,
     );
   }
 

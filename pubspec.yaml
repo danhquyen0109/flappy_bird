@@ -19,6 +19,7 @@ dependencies:
   flutter_svg: 2.1.0
   flame_audio: 2.11.6
   flame: 1.29.0
+  in_app_purchase: 3.2.3
 
 dev_dependencies:
   flutter_test:

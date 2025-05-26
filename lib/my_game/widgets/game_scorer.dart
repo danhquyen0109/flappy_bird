@@ -19,13 +19,7 @@ class GameScorer extends StatelessWidget {
     return BlocListener<MyGameCubit, MyGameState>(
       listenWhen: (pre, cur) => pre.gameState != cur.gameState,
       listener: (context, state) {
-        if (state.gameState == GameState.firstTime) {
-          showDialog(
-            barrierDismissible: false,
-            context: context,
-            builder: (_) => UserGuide(),
-          );
-        } else if (state.gameState == GameState.gameOver) {
+        if (state.gameState == GameState.gameOver) {
           final TextEditingController textEditingController =
               TextEditingController();
           showDialog(
@@ -50,48 +44,6 @@ class GameScorer extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          // Container(
-                          //   width: 200,
-                          //   height: 100,
-                          //   decoration: BoxDecoration(
-                          //     color: DSColors.primary300,
-                          //     borderRadius: BorderRadius.all(
-                          //       Radius.circular(8.0),
-                          //     ),
-                          //   ),
-                          //   child: Row(
-                          //     crossAxisAlignment: CrossAxisAlignment.center,
-                          //     mainAxisAlignment: MainAxisAlignment.start,
-                          //     children: [
-                          //       const SizedBox(width: 12),
-                          //       SizedBox(
-                          //         width: 35,
-                          //         child: Image.asset(
-                          //           'assets/images/reward.png',
-                          //           fit: BoxFit.cover,
-                          //         ),
-                          //       ),
-                          //       const SizedBox(width: 16),
-                          //       Column(
-                          //         crossAxisAlignment: CrossAxisAlignment.start,
-                          //         mainAxisAlignment: MainAxisAlignment.center,
-                          //         children: [
-                          //           CustomText(
-                          //             'SCORE  ${state.score}',
-                          //             fontSize: 22,
-                          //             strokeWidth: 1.0,
-                          //           ),
-                          //           const SizedBox(height: 4),
-                          //           CustomText(
-                          //             'BEST   ${state.best}',
-                          //             fontSize: 22,
-                          //             strokeWidth: 1.0,
-                          //           ),
-                          //         ],
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
@@ -143,6 +95,7 @@ class GameScorer extends StatelessWidget {
                                           context,
                                           content:
                                               "Your name is not allow to empty",
+                                          type: SnackBarType.error,
                                         );
                                       } else {
                                         context.read<MyGameCubit>().saveScore(
@@ -247,40 +200,6 @@ class _ScoreBuilder extends StatelessWidget {
       builder: (context, state) {
         return CustomText(
           'Score: ${state.score}',
-          fontSize: 18,
-          fontWeight: FontWeight.w800,
-          strokeWidth: 0.75,
-        );
-      },
-    );
-  }
-}
-
-class _FruitBuilder extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MyGameCubit, MyGameState>(
-      buildWhen: (pre, cur) => pre.fruit != cur.fruit,
-      builder: (context, state) {
-        return CustomText(
-          'x${state.fruit}',
-          fontSize: 18,
-          fontWeight: FontWeight.w800,
-          strokeWidth: 0.75,
-        );
-      },
-    );
-  }
-}
-
-class _CoinBuilder extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<MyGameCubit, MyGameState>(
-      buildWhen: (pre, cur) => pre.coin != cur.coin,
-      builder: (context, state) {
-        return CustomText(
-          '${state.coin}',
           fontSize: 18,
           fontWeight: FontWeight.w800,
           strokeWidth: 0.75,

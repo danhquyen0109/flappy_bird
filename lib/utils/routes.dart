@@ -1,6 +1,8 @@
 import 'package:galaxy_bird/game_page.dart';
 import 'package:galaxy_bird/setting/setting.dart';
 import 'package:galaxy_bird/setting/view/how_to_play_page.dart';
+import 'package:galaxy_bird/setting/view/purchase_coin_page.dart';
+import 'package:galaxy_bird/setting/view/upgrade_item_page.dart';
 import 'package:galaxy_bird/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,4 +19,6 @@ final gameRoutes = <String, CustomWidgetBuilder>{
   MapShop.routeName: (_, components) => MapShop(),
   ShopPage.routeName: (_, components) => ShopPage(),
   HowToPlayPage.routeName: (_, components) => HowToPlayPage(),
+  PurchaseCoinPage.routeName: (_, components) => PurchaseCoinPage(),
+  UpgradeItemPage.routeName: (_, components) => UpgradeItemPage(),
 };

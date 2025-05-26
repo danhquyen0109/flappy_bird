@@ -61,22 +61,22 @@ class HowToPlayPage extends StatelessWidget {
             _buildSpellGuide(
               'assets/images/objects/magnet.png',
               'Magnet',
-              'Attracts nearby coins towards the bird.',
+              'Attracts nearby coins towards the character.',
             ),
             _buildSpellGuide(
               'assets/images/shield.png',
               'Shield',
-              'Protects the bird from one collision with obstacles.',
+              'Protects the character from one collision with obstacles.',
             ),
             _buildSpellGuide(
               'assets/images/bottle.png',
               'Power Potion',
-              'Increases bird size, making it easier to collect items.',
+              'Increases character size, making it easier to collect items.',
             ),
             _buildSpellGuide(
               'assets/images/ghost.png',
               'Ghost',
-              'Transforms the bird into a ghost, allowing it to pass through obstacles.',
+              'Transforms the character into a ghost, allowing it to pass through obstacles.',
             ),
             const SizedBox(height: 24),
             CustomText('Objective', fontSize: 24, fontWeight: FontWeight.bold),

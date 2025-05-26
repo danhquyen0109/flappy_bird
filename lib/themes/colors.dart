@@ -19,4 +19,7 @@ class DSColors {
   static const Color black = Color(0xFF000000);
   static const Color woodSmoke = Color(0xFF18191F);
   static const Color selago = Color(0xFFE9E7FC);
+
+  static const Color green300 = Color(0xFFB4F5A9);
+  static const Color red400 = Color(0xFFEC584F);
 }

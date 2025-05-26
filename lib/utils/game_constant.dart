@@ -105,7 +105,7 @@ class GameConstant {
     },
     11: {
       'sprites': ['assets/images/birds/char11/frame-1.png'],
-      'type': ItemType.needWatchAd,
+      'type': ItemType.needBuyByCoin,
       'name': 'Katy Berry',
       'cost': 75,
       'spriteRatio': 427 / 432,
@@ -327,7 +327,7 @@ class GameConstant {
       'sprites': [spacePaintingBG],
       'mapType': MapType.spring,
       'type': ItemType.free,
-      'name': 'Mysterious Forest',
+      'name': 'Space Painting',
       'cost': 0,
       'spriteRatio': 1.0,
     },

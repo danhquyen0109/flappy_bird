@@ -61,14 +61,13 @@ class BirdShop extends StatelessWidget {
 
 class _BirdAvatar extends StatelessWidget {
   const _BirdAvatar({
-    this.width = 70,
     this.isSelected = false,
     this.isBought = false,
     this.onTap,
     required this.birdModel,
   });
 
-  final double width;
+  final double width = 70;
   final bool isSelected;
   final bool isBought;
   final Function? onTap;

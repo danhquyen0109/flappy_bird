@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'dart:ui';
 
 import 'package:galaxy_bird/components/components.dart';
 import 'package:galaxy_bird/game_page.dart';
@@ -9,7 +7,6 @@ import 'package:galaxy_bird/setting/view/how_to_play_page.dart';
 import 'package:galaxy_bird/themes/colors.dart';
 import 'package:galaxy_bird/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SettingPage extends StatelessWidget {
@@ -25,7 +22,7 @@ class SettingPage extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          _Background(),
+          Background(),
           // _DialogBackground(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +51,9 @@ class SettingPage extends StatelessWidget {
   }
 }
 
-class _Background extends StatelessWidget {
+class Background extends StatelessWidget {
+  const Background({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingCubit, SettingState>(
@@ -228,58 +227,6 @@ class _ScoreButton extends StatelessWidget {
                 bodyMarginBottom: 100,
                 bodyWidget: Leaderboard(),
               ),
-        );
-      },
-      shadowColor: DSColors.woodSmoke,
-    );
-  }
-}
-
-class _ExitButton extends StatelessWidget {
-  const _ExitButton();
-
-  final double height = 75;
-
-  @override
-  Widget build(BuildContext context) {
-    return PlainShadowButton(
-      borderColor: DSColors.woodSmoke,
-      color: DSColors.primaryColor,
-      bodyBuilder: (isTapped) {
-        return CustomText(
-          "Exit",
-          fontSize: isTapped ? 16 : 21,
-          fontWeight: FontWeight.w800,
-          strokeWidth: 1.0,
-        );
-      },
-      height: height,
-      size: 200,
-      callback: () {
-        context.read<SettingCubit>().playButtonSound();
-        showDialog(
-          context: context,
-          builder: (_) {
-            double height = MediaQuery.of(context).size.height / 4;
-            return CustomDialog(
-              height: height,
-              showCloseButton: false,
-              showSecondaryButton: true,
-              showPrimaryButton: true,
-              secondaryText: "No",
-              primaryText: "Yes",
-              secondaryButtonPressed: () => Navigator.pop(context),
-              primaryButtonPressed: () => SystemNavigator.pop(),
-              bodyMargin: height / 2 - 16,
-              bodyWidget: CustomText(
-                'Do you want to exit?',
-                fontSize: 18,
-                strokeWidth: 0.15,
-                color: DSColors.woodSmoke,
-                borderColor: DSColors.white,
-              ),
-            );
-          },
         );
       },
       shadowColor: DSColors.woodSmoke,

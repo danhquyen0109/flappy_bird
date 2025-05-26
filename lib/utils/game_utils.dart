@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image/image.dart' as im;
 import 'package:flutter/services.dart' show rootBundle;
 
+enum SnackBarType { success, error, info }
 
 class GameUtils {
   static Future<ui.Image> loadImage(String assetPath) async {
@@ -19,14 +20,22 @@ class GameUtils {
   }
 
   static Future<ui.Image> loadImageFitSize(
-      String imageAssetPath, int width, int height) async {
+    String imageAssetPath,
+    int width,
+    int height,
+  ) async {
     final ByteData assetImageByteData = await rootBundle.load(imageAssetPath);
-    im.Image? baseSizeImage =
-        im.decodeImage(assetImageByteData.buffer.asUint8List());
-    im.Image resizeImage =
-        im.copyResize(baseSizeImage!, width: width, height: height);
-    ui.Codec codec = await ui
-        .instantiateImageCodec(Uint8List.fromList(im.encodePng(resizeImage)));
+    im.Image? baseSizeImage = im.decodeImage(
+      assetImageByteData.buffer.asUint8List(),
+    );
+    im.Image resizeImage = im.copyResize(
+      baseSizeImage!,
+      width: width,
+      height: height,
+    );
+    ui.Codec codec = await ui.instantiateImageCodec(
+      Uint8List.fromList(im.encodePng(resizeImage)),
+    );
     ui.FrameInfo frameInfo = await codec.getNextFrame();
     return frameInfo.image;
   }
@@ -42,8 +51,10 @@ class GameUtils {
     showDialog(
       context: context,
       builder: (_) {
-        timer = Timer(autoHide ?? const Duration(milliseconds: 2500),
-            () => Navigator.of(context).pop());
+        timer = Timer(
+          autoHide ?? const Duration(milliseconds: 2500),
+          () => Navigator.of(context).pop(),
+        );
         return SuccessDialog(
           showTitle: showTitle,
           title: title,
@@ -62,40 +73,41 @@ class GameUtils {
     });
   }
 
-  static void showSnackBar(BuildContext context,
-      {Duration? autoHide,
-      String content = "    Please check your internet connection"}) {
+  static void showSnackBar(
+    BuildContext context, {
+    Duration? autoHide,
+    SnackBarType type = SnackBarType.success,
+    String content = "    Please check your internet connection",
+  }) {
     ScaffoldMessenger.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          content: Stack(
-            alignment: Alignment.centerLeft,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 75,
-                alignment: Alignment.bottomCenter,
-                padding: const EdgeInsets.all(24),
-                decoration: ShapeDecoration(
-                  shadows: [
-                    BoxShadow(color: DSColors.woodSmoke, offset: Offset(0, 6)),
-                  ],
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 2, color: DSColors.woodSmoke),
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  color: DSColors.white,
-                ),
+          content: Container(
+            width: MediaQuery.of(context).size.width,
+            height: 75,
+            alignment: Alignment.bottomCenter,
+            padding: const EdgeInsets.all(24),
+            decoration: ShapeDecoration(
+              // shadows: [
+              //   BoxShadow(color: DSColors.woodSmoke, offset: Offset(0, 6)),
+              // ],
+              shape: RoundedRectangleBorder(
+                side: BorderSide(width: 2, color: DSColors.woodSmoke),
+                borderRadius: BorderRadius.circular(16.0),
               ),
-              CustomText(
-                content,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ],
+              color:
+                  type == SnackBarType.success
+                      ? DSColors.green300
+                      : DSColors.red400,
+            ),
+            child: CustomText(
+              content,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           duration: autoHide ?? const Duration(seconds: 1),
         ),

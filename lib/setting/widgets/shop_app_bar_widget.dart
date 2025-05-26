@@ -6,7 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-AppBar shopAppBarWidget(BuildContext context) => AppBar(
+AppBar shopAppBarWidget(BuildContext context, {String title = 'Shop'}) => AppBar(
   flexibleSpace: Container(
     decoration: BoxDecoration(color: DSColors.primaryColor),
   ),
@@ -28,7 +28,7 @@ AppBar shopAppBarWidget(BuildContext context) => AppBar(
       size: 30,
     ),
   ),
-  title: CustomText('Shop', fontSize: 30),
+  title: CustomText(title, fontSize: 30),
   centerTitle: true,
   actions: [
     CustomButton(
